@@ -1,0 +1,57 @@
+<resources>
+    <string name="english">अंग्रेज़ी</string>
+    <string name="vietnamese">वियतनामी</string>
+    <string name="hindi">हिंदी</string>
+    <string name="spanish">स्पेनिश</string>
+    <string name="french">फ्रेंच</string>
+    <string name="portuguese">पुर्तगाली</string>
+
+    <string name="onboarding_title1">जानवर की ध्वनियाँ</string>
+    <string name="onboarding_intro1">चुनने के लिए विविध वास्तविक जानवरों की अलग-अलग ध्वनियाँ</string>
+    <string name="onboarding_title2">रिंगटोन के रूप में सेट करें</string>
+    <string name="onboarding_intro2">रिंगटोन, संपर्क रिंगटोन, अलार्म साउंड, ... सेट करें</string>
+    <string name="onboarding_title3">प्रत्येक संपर्क व्यक्ति</string>
+    <string name="onboarding_intro3">प्रत्येक संपर्क के लिए एक अलग रिंगटोन सेट करें</string>
+
+    <string name="txt_categories">श्रेणियाँ</string>
+    <string name="txt_favourite">पसंदीदा</string>
+    <string name="txt_setting">सेटिंग</string>
+    <string name="txt_top_ringtone">सर्वश्रेष्ठ रिंगटोन</string>
+    <string name="txt_empty">खाली</string>
+    <string name="txt_all_animal">सभी जानवर</string>
+    <string name="txt_bird">पक्षी</string>
+    <string name="txt_farm_animals">पशुओं की खेती</string>
+    <string name="txt_insects">कीट</string>
+    <string name="txt_land">भूमि</string>
+    <string name="txt_mammals">स्तनधारी</string>
+    <string name="txt_pet_animals">पालतू जानवर</string>
+    <string name="txt_reptiles_and_amphibians">सरीसृप और उभयचर</string>
+    <string name="txt_switching_array">एरे का परिवर्तन</string>
+    <string name="txt_water">पानी</string>
+    <string name="txt_wild_animals">जंगली जानवर</string>
+    <string name="txt_ringtone">रिंगटोन</string>
+    <string name="txt_contact">संपर्क</string>
+    <string name="txt_sms">एसएमएस</string>
+    <string name="txt_alarm">अलार्म</string>
+    <string name="txt_rate_5_star">5 सितारे की रेटिंग</string>
+    <string name="txt_revert_to_default">डिफ़ॉल्ट रिंगटोन पर वापस लौटें</string>
+    <string name="txt_share">साझा करें</string>
+    <string name="txt_license">लाइसेंस</string>
+    <string name="txt_privacy_terms">गोपनीयता और नियम</string>
+    <string name="txt_error_report">त्रुटि रिपोर्ट</string>
+    <string name="txt_language">भाषा</string>
+    <string name="txt_write_setting_permission_title">सेटिंग्स लिखने के लिए अनुमति की आवश्यकता है</string>
+    <string name="txt_ok">ठीक है</string>
+    <string name="txt_cancel">रद्द करें</string>
+    <string name="txt_ringtone_success">रिंगटोन सफलतापूर्वक सेट किया गया</string>
+    <string name="this_action_contain_ads">यह कार्रवाई विज्ञापन शामिल है</string>
+    <string name="loading_cmp">सहमति प्रबंधन प्लेटफ़ॉर्म लोड हो रहा है</string>
+    <string name="txt_next">अगला</string>
+    <string name="txt_get_start">शुरू करें</string>
+    <string name="are_you_sure_you_want_to_exit">क्या आप निश्चित हैं कि आप बाहर निकलना चाहते हैं?</string>
+    <string name="txt_exit">बाहर निकलें</string>
+    <string name="txt_revert_to_default_success">डिफ़ॉल्ट सेटिंग्स पुनः स्थापित</string>
+    <string name="txt_you_not_set_ringtone_yet">आपने अभी तक रिंगटोन सेट नहीं किया है</string>
+    <string name="txt_set_ringtone_alarm">सफलतापूर्वक जोड़ा गया, कृपया अपने अलार्म में ध्वनि का चयन करें</string>
+
+</resources>

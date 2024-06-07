@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.vinalinux.animalsounds.animalringtone",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 14,
+      "versionName": "14.0",
+      "outputFile": "animals14.0(14)_05.27.2024-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

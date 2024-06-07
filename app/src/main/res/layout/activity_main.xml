@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".component.home.HomeActivity"
+    android:orientation="vertical"
+    android:background="@color/app_bg"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animals: Ringtone"
+        style="@style/TextView_Headline1"
+        android:layout_marginTop="@dimen/size16"
+        android:layout_marginLeft="@dimen/size16"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/size36"
+        >
+
+        <LinearLayout
+            android:id="@+id/llCategories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+            
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/size56"
+                android:layout_height="@dimen/size56"
+                app:cardBackgroundColor="#fe7b7b"
+                app:cardCornerRadius="@dimen/size28"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size24"
+                    android:layout_height="@dimen/size24"
+                    android:src="@drawable/ic_categories"
+                    android:layout_gravity="center"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_categories"
+                style="@style/TextView_Headline2"
+                android:layout_marginTop="@dimen/size8"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFavourite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/size56"
+                android:layout_height="@dimen/size56"
+                app:cardBackgroundColor="#ff5e94"
+                app:cardCornerRadius="@dimen/size28"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size24"
+                    android:layout_height="@dimen/size24"
+                    android:src="@drawable/ic_heart"
+                    android:layout_gravity="center"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_favourite"
+                style="@style/TextView_Headline2"
+                android:layout_marginTop="@dimen/size8"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSetting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/size56"
+                android:layout_height="@dimen/size56"
+                app:cardBackgroundColor="#15c651"
+                app:cardCornerRadius="@dimen/size28"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/size24"
+                    android:layout_height="@dimen/size24"
+                    android:src="@drawable/ic_settings"
+                    android:layout_gravity="center"
+                    app:tint="@color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_setting"
+                style="@style/TextView_Headline2"
+                android:layout_marginTop="@dimen/size8"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_top_ringtone"
+        style="@style/TextView_Headline2"
+        android:layout_marginLeft="@dimen/size16"
+        android:layout_marginTop="@dimen/size28"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reDetails"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/size2"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="4353" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</LinearLayout>

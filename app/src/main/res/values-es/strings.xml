@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="english">Inglés</string>
+    <string name="vietnamese">Vietnamita</string>
+    <string name="hindi">Hindi</string>
+    <string name="spanish">Español</string>
+    <string name="french">Francés</string>
+    <string name="portuguese">Portugués</string>
+
+    <string name="onboarding_title1">Sonidos de animales</string>
+    <string name="onboarding_intro1">Variedad de diferentes sonidos de animales realistas para elegir</string>
+    <string name="onboarding_title2">Establecer como tono de llamada</string>
+    <string name="onboarding_intro2">Establecer tonos de llamada, tonos de contacto, sonidos de alarma,...</string>
+    <string name="onboarding_title3">Cada persona de contacto</string>
+    <string name="onboarding_intro3">Establecer un tono de llamada diferente para cada contacto</string>
+
+    <string name="txt_categories">Categorías</string>
+    <string name="txt_favourite">Favorito</string>
+    <string name="txt_setting">Ajuste</string>
+    <string name="txt_top_ringtone">Mejores tonos de llamada</string>
+    <string name="txt_empty">Vacío</string>
+    <string name="txt_all_animal">Todos los animales</string>
+    <string name="txt_bird">Ave</string>
+    <string name="txt_farm_animals">Animales de granja</string>
+    <string name="txt_insects">Insectos</string>
+    <string name="txt_land">Tierra</string>
+    <string name="txt_mammals">Mamíferos</string>
+    <string name="txt_pet_animals">Animales domésticos</string>
+    <string name="txt_reptiles_and_amphibians">Reptiles y anfibios</string>
+    <string name="txt_switching_array">Cambio de arreglo</string>
+    <string name="txt_water">Agua</string>
+    <string name="txt_wild_animals">Animales salvajes</string>
+    <string name="txt_ringtone">Tono de llamada</string>
+    <string name="txt_contact">Contacto</string>
+    <string name="txt_sms">SMS</string>
+    <string name="txt_alarm">Alarma</string>
+    <string name="txt_rate_5_star">Calificar con 5 estrellas</string>
+    <string name="txt_revert_to_default">Volver al tono de llamada predeterminado</string>
+    <string name="txt_share">Compartir</string>
+    <string name="txt_license">Licencia</string>
+    <string name="txt_privacy_terms">Privacidad y términos</string>
+    <string name="txt_error_report">Reporte de error</string>
+    <string name="txt_language">Idioma</string>
+    <string name="txt_write_setting_permission_title">Requiere permiso para escribir ajustes</string>
+    <string name="txt_ok">Aceptar</string>
+    <string name="txt_cancel">Cancelar</string>
+    <string name="txt_ringtone_success">Tono de llamada establecido correctamente</string>
+    <string name="this_action_contain_ads">Esta acción contiene anuncios</string>
+    <string name="loading_cmp">Cargando Plataforma de Gestión de Consentimiento</string>
+    <string name="txt_next">Siguiente</string>
+    <string name="txt_get_start">Empezar</string>
+    <string name="are_you_sure_you_want_to_exit">¿Estás seguro de que quieres salir?</string>
+    <string name="txt_exit">Salir</string>
+    <string name="txt_revert_to_default_success">Configuraciones predeterminadas restauradas</string>
+    <string name="txt_you_not_set_ringtone_yet">Aún no has configurado un tono de llamada</string>
+    <string name="txt_set_ringtone_alarm">Agregado exitosamente, por favor selecciona el sonido en tu alarma</string>
+
+</resources>
