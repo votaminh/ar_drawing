@@ -74,5 +74,22 @@ class PermissionUtils {
                 ActivityCompat.requestPermissions(activity, permissions, request)
             }
         }
+
+        fun cameraGrant(activity: Activity): Boolean {
+            return if (Build.VERSION.SDK_INT < 23) {
+                true
+            } else {
+                ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+            }
+        }
+
+        fun requestCamera(activity: Activity, request: Int) {
+            if (Build.VERSION.SDK_INT < 23) {
+                return
+            } else {
+                val permissions = arrayOf(Manifest.permission.CAMERA)
+                ActivityCompat.requestPermissions(activity, permissions, request)
+            }
+        }
     }
 }

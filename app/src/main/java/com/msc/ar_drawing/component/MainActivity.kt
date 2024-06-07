@@ -1,0 +1,75 @@
+package com.msc.ar_drawing.component
+
+import android.app.Activity
+import android.content.Intent
+import androidx.camera.core.AspectRatio
+import androidx.camera.core.Camera
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.content.ContextCompat
+import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.databinding.ActivityMain1Binding
+import com.msc.ar_drawing.utils.PermissionUtils
+import java.util.concurrent.Executors
+
+class MainActivity : BaseActivity<ActivityMain1Binding>() {
+
+    private val cameraExecutor = Executors.newSingleThreadExecutor()
+    private var camera: Camera? = null
+    private var imageAnalyzer: ImageAnalysis? = null
+
+    companion object {
+        fun start(activity : Activity){
+            activity.startActivity(Intent(activity, MainActivity::class.java))
+        }
+    }
+
+    override fun provideViewBinding(): ActivityMain1Binding {
+        return ActivityMain1Binding.inflate(layoutInflater)
+    }
+
+    override fun initViews() {
+        if(PermissionUtils.cameraGrant(this)){
+            startCamera()
+        }else{
+            PermissionUtils.requestCamera(this, 322)
+        }
+    }
+
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+
+        cameraProviderFuture.addListener({
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            val preview: Preview = Preview.Builder()
+                .build()
+            val cameraSelector: CameraSelector = CameraSelector.Builder()
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .build()
+
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+                .setTargetRotation(viewBinding.preview.display.rotation)
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build()
+                .also {
+                    it.setAnalyzer(cameraExecutor) { imageProxy ->
+//                        viewModel.process(imageProxy)
+                    }
+                }
+
+            try {
+                preview.setSurfaceProvider(viewBinding.preview.surfaceProvider)
+                cameraProvider.unbindAll()
+                camera = cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalyzer, preview)
+//                val cameraControl = camera?.cameraControl
+//                cameraControl?.enableTorch(true)
+//                registerCameraFlashStatus()
+            } catch (exc: Exception) {
+            }
+
+        }, ContextCompat.getMainExecutor(this))
+    }
+}

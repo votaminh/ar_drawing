@@ -3,6 +3,7 @@ package com.msc.ar_drawing.component.ump
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.splash.SplashActivity
 import com.msc.ar_drawing.App
+import com.msc.ar_drawing.component.MainActivity
 import com.msc.ar_drawing.databinding.ActivityUmpBinding
 import com.msc.ar_drawing.utils.RemoteConfig
 import com.msc.ar_drawing.utils.SpManager
@@ -33,7 +34,7 @@ class UMPActivity : BaseActivity<ActivityUmpBinding>() {
         app.initAds()
 
         SpManager.getInstance(this).setUMPShowed(true)
-        SplashActivity.start(this);
+        MainActivity.start(this);
         finish()
     }
 
