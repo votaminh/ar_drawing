@@ -2,16 +2,23 @@ package com.msc.ar_drawing.component
 
 import android.app.Activity
 import android.content.Intent
-import androidx.camera.core.AspectRatio
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.PermissionUtils
+import com.msc.ar_drawing.utils.ViewEx.gone
+import com.msc.ar_drawing.utils.ViewEx.textColorRes
+import com.msc.ar_drawing.utils.ViewEx.tintColorRes
+import com.msc.ar_drawing.utils.ViewEx.visible
 import java.util.concurrent.Executors
 
 class MainActivity : BaseActivity<ActivityMain1Binding>() {
@@ -36,6 +43,44 @@ class MainActivity : BaseActivity<ActivityMain1Binding>() {
         }else{
             PermissionUtils.requestCamera(this, 322)
         }
+
+        viewBinding.run {
+            opaciy.setOnClickListener {
+                showMenu(imvOpacity, tvOpacity, menuOpacity)
+            }
+            picture.setOnClickListener {
+                showMenu(imvPicture, tvPicture, menuPicture)
+            }
+            flash.setOnClickListener {
+                showToast("flash")
+            }
+            record.setOnClickListener {
+                showToast("record")
+            }
+            flip.setOnClickListener {
+                showToast("flip")
+            }
+        }
+    }
+
+    private fun showMenu(imv: ImageView, tv: TextView, menu: LinearLayout) {
+
+
+        viewBinding.run {
+            imvPicture.tintColorRes(R.color.gray)
+            tvPicture.textColorRes(R.color.gray)
+
+            imvOpacity.tintColorRes(R.color.gray)
+            tvOpacity.textColorRes(R.color.gray)
+
+            menuPicture.gone()
+            menuOpacity.gone()
+        }
+
+        menu.visible()
+
+        imv.tintColorRes(R.color.app_main)
+        tv.textColorRes(R.color.app_main)
     }
 
     private fun startCamera() {
@@ -49,16 +94,16 @@ class MainActivity : BaseActivity<ActivityMain1Binding>() {
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build()
 
-            imageAnalyzer = ImageAnalysis.Builder()
-                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
-                .setTargetRotation(viewBinding.preview.display.rotation)
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-                .also {
-                    it.setAnalyzer(cameraExecutor) { imageProxy ->
-//                        viewModel.process(imageProxy)
-                    }
-                }
+//            imageAnalyzer = ImageAnalysis.Builder()
+//                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+//                .setTargetRotation(viewBinding.preview.display.rotation)
+//                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+//                .build()
+//                .also {
+//                    it.setAnalyzer(cameraExecutor) { imageProxy ->
+////                        viewModel.process(imageProxy)
+//                    }
+//                }
 
             try {
                 preview.setSurfaceProvider(viewBinding.preview.surfaceProvider)

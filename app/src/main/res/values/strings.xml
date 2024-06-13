@@ -60,4 +60,11 @@
     <string name="txt_read_media_permisison">Read media</string>
     <string name="txt_receiver_notification">Get notifications</string>
     <string name="txt_premission_request_message">In order for the application to operate stably, please provide the following permissions</string>
+    <string name="txt_opacity">Opacity</string>
+    <string name="txt_picture">Picture</string>
+    <string name="txt_flash">Flash</string>
+    <string name="txt_record">Record</string>
+    <string name="txt_flip">Flip</string>
+    <string name="txt_original">Original</string>
+    <string name="txt_unframe">Unframe</string>
 </resources>
