@@ -12,31 +12,6 @@ import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.databinding.DialogExitBinding
 
 object DialogEx {
-    fun Activity.showDialogRequestWriteSettingPermission(okAction : (() -> Unit)? = null){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.txt_write_setting_permission_title))
-        builder.setPositiveButton(getString(R.string.txt_ok), object : DialogInterface.OnClickListener{
-            override fun onClick(p0: DialogInterface?, p1: Int) {
-                okAction?.invoke()
-            }
-        })
-        builder.setNegativeButton(getString(R.string.txt_cancel), object : DialogInterface.OnClickListener{
-            override fun onClick(p0: DialogInterface?, p1: Int) {
-
-            }
-        })
-        builder.show()
-    }
-    fun Activity.showDialogSuccess(text : String){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(text)
-        builder.setPositiveButton(getString(R.string.txt_ok), object : DialogInterface.OnClickListener{
-            override fun onClick(p0: DialogInterface?, p1: Int) {
-
-            }
-        })
-        builder.show()
-    }
 
     fun Activity?.showDialogExit(
         lifecycle: LifecycleOwner,

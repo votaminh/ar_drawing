@@ -22,7 +22,7 @@
         android:layout_marginHorizontal="@dimen/size16"
         android:layout_marginBottom="@dimen/size8"
         android:text="@string/this_action_contain_ads"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/size14"
         app:layout_constraintBottom_toTopOf="@id/progress_bar"
         app:layout_constraintEnd_toEndOf="parent"

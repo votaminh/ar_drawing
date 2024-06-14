@@ -34,7 +34,7 @@ class UMPUtils {
             Log.i(TAG, "init: ")
 
             val progressDialog = ProgressDialog(activity)
-            progressDialog.setMessage(activity.getString(R.string.loading_cmp))
+//            progressDialog.setMessage(activity.getString(R.string.loading_cmp))
 
             if(showLoading){
                 progressDialog.show()
