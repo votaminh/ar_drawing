@@ -5,6 +5,7 @@ import android.content.Intent
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -39,7 +40,7 @@ class MainActivity : BaseActivity<ActivityMain1Binding>() {
 
     override fun initViews() {
         if(PermissionUtils.cameraGrant(this)){
-            startCamera()
+//            startCamera()
         }else{
             PermissionUtils.requestCamera(this, 322)
         }
@@ -94,16 +95,16 @@ class MainActivity : BaseActivity<ActivityMain1Binding>() {
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build()
 
-//            imageAnalyzer = ImageAnalysis.Builder()
-//                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
-//                .setTargetRotation(viewBinding.preview.display.rotation)
-//                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-//                .build()
-//                .also {
-//                    it.setAnalyzer(cameraExecutor) { imageProxy ->
-////                        viewModel.process(imageProxy)
-//                    }
-//                }
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+                .setTargetRotation(viewBinding.preview.display.rotation)
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build()
+                .also {
+                    it.setAnalyzer(cameraExecutor) { imageProxy ->
+//                        viewModel.process(imageProxy)
+                    }
+                }
 
             try {
                 preview.setSurfaceProvider(viewBinding.preview.surfaceProvider)

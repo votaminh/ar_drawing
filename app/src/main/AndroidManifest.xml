@@ -71,18 +71,6 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".component.category.CategoryActivity"
-            android:exported="false"
-            />
-        <activity android:name=".component.favourite.FavouriteActivity"
-            android:exported="false"
-            />
-        <activity android:name=".component.details.DetailsCategoryActivity"
-            android:exported="false"
-            />
-        <activity android:name=".component.setting.SettingActivity"
-            android:exported="false"
-            />
         <activity android:name=".component.permission.PermissionActivity"
             android:exported="false"
             />

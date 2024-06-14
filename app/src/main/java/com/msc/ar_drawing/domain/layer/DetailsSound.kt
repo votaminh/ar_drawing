@@ -1,4 +1,4 @@
-package com.msc.ar_drawing.component.details
+package com.msc.ar_drawing.domain.layer
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

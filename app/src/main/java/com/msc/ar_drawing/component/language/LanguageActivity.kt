@@ -12,7 +12,6 @@ import com.flash.light.component.language.LanguageAdapter
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.component.onboarding.OnBoardingActivity
 import com.msc.ar_drawing.admob.NativeAdmob
-import com.msc.ar_drawing.component.home.HomeActivity
 import com.msc.ar_drawing.databinding.ActivityLanguageBinding
 import com.msc.ar_drawing.utils.AppEx.setAppLanguage
 import com.msc.ar_drawing.utils.NativeAdmobUtils
@@ -62,9 +61,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                     OnBoardingActivity.start(this)
                     finish()
                 } else {
-                    startActivity(Intent(this, HomeActivity::class.java).also {
-                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    })
+//                    startActivity(Intent(this, HomeActivity::class.java).also {
+//                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                    })
                 }
             }
         }

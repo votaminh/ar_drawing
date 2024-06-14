@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
-import com.msc.ar_drawing.component.home.HomeActivity
 import com.msc.ar_drawing.databinding.ActivityPermissonBinding
 import com.msc.ar_drawing.utils.NativeAdmobUtils
 import com.msc.ar_drawing.utils.PermissionUtils
@@ -49,7 +48,7 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
             }
 
             tvNext.setOnClickListener {
-                HomeActivity.start(this@PermissionActivity)
+//                HomeActivity.start(this@PermissionActivity)
                 finish()
             }
         }
