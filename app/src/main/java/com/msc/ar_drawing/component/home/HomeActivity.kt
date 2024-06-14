@@ -1,18 +1,17 @@
-package com.msc.ar_drawing.comp
+package com.msc.ar_drawing.component.home
 
 import android.app.Activity
 import android.content.Intent
-import androidx.activity.viewModels
 import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
-import com.msc.ar_drawing.databinding.ActivityMainBinding
+import com.msc.ar_drawing.databinding.ActivityHomeBinding
 import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeActivity : BaseActivity<ActivityMainBinding>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
 
     @Inject
@@ -28,7 +27,7 @@ class HomeActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    override fun provideViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivityHomeBinding {
+        return ActivityHomeBinding.inflate(layoutInflater)
     }
 }

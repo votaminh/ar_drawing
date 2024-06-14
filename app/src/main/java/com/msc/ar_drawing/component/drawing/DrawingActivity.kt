@@ -1,4 +1,4 @@
-package com.msc.ar_drawing.component
+package com.msc.ar_drawing.component.drawing
 
 import android.app.Activity
 import android.content.Intent
@@ -22,7 +22,7 @@ import com.msc.ar_drawing.utils.ViewEx.tintColorRes
 import com.msc.ar_drawing.utils.ViewEx.visible
 import java.util.concurrent.Executors
 
-class MainActivity : BaseActivity<ActivityMain1Binding>() {
+class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
     private val cameraExecutor = Executors.newSingleThreadExecutor()
     private var camera: Camera? = null
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity<ActivityMain1Binding>() {
 
     companion object {
         fun start(activity : Activity){
-            activity.startActivity(Intent(activity, MainActivity::class.java))
+            activity.startActivity(Intent(activity, DrawingActivity::class.java))
         }
     }
 

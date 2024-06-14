@@ -67,4 +67,7 @@
     <string name="txt_flip">Flip</string>
     <string name="txt_original">Original</string>
     <string name="txt_unframe">Unframe</string>
+    <string name="txt_sketch">Sketch</string>
+    <string name="txt_trace">Trace</string>
+    <string name="txt_draw_by_text">DRAW BY TEXT</string>
 </resources>

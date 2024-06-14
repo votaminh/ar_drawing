@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_bg"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/size16"
+        android:layout_marginBottom="@dimen/size20"
+        android:layout_marginTop="@dimen/size7"
+        >
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="AR DRAWING"
+            android:textSize="@dimen/size32"
+            android:textColor="@color/app_main"
+            android:fontFamily="@font/lilitaone_regular"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/size30"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_more_app"
+            android:paddingHorizontal="@dimen/size5"
+            android:layout_marginHorizontal="@dimen/size2"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/size30"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_vip"
+            android:paddingHorizontal="@dimen/size5"
+            android:layout_marginHorizontal="@dimen/size2"/>
+
+        <ImageView
+            android:layout_width="@dimen/size30"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_setting2"
+            android:paddingHorizontal="@dimen/size5"
+            android:layout_marginHorizontal="@dimen/size2"/>
+        
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <androidx.cardview.widget.CardView
+            android:id="@+id/sketch"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size156"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/trace"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:cardBackgroundColor="#78d3ff"
+            app:cardCornerRadius="@dimen/size20">
+            <ImageView
+                android:layout_width="@dimen/size122"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_sketch_menu"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/size5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_sketch"
+                android:textColor="@color/white"
+                android:fontFamily="@font/dosis_semibold"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textSize="@dimen/size18"
+                android:layout_marginBottom="@dimen/size15"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/trace"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size156"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/sketch"
+            app:layout_constraintDimensionRatio="W,1:1"
+            app:cardBackgroundColor="#a5de9a"
+            app:cardCornerRadius="@dimen/size20">
+            <ImageView
+                android:layout_width="@dimen/size122"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/imv_trace_menu"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/size5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_trace"
+                android:textColor="@color/white"
+                android:fontFamily="@font/dosis_semibold"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textSize="@dimen/size18"
+                android:layout_marginBottom="@dimen/size15"
+                />
+        </androidx.cardview.widget.CardView>
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size80"
+        android:layout_marginTop="@dimen/size20"
+        app:cardBackgroundColor="@color/app_main"
+        app:cardCornerRadius="@dimen/size20"
+        android:layout_marginHorizontal="@dimen/size10"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_draw_by_text"
+            android:fontFamily="@font/dosis_semibold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size24"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size60"
+            android:adjustViewBounds="true"
+            android:src="@drawable/imv_draw_text_menu"
+            android:layout_gravity="bottom|right"
+            android:alpha="0.3"
+            />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
