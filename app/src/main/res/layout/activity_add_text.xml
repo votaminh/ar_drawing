@@ -58,14 +58,17 @@
         >
 
         <EditText
+            android:id="@+id/edInput"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size140"
+            android:layout_marginStart="@dimen/size16"
+            android:layout_marginTop="@dimen/size16"
+            android:layout_marginEnd="@dimen/size16"
+            android:layout_marginBottom="@dimen/size16"
             android:background="@android:color/transparent"
-            android:hint="@string/txt_type_here"
             android:gravity="center"
-            android:textSize="@dimen/size16"
-            android:layout_margin="@dimen/size16"
-            />
+            android:hint="@string/txt_type_here"
+            android:textSize="@dimen/size16" />
 
     </RelativeLayout>
 
@@ -81,9 +84,9 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reFont"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size24"
-        android:background="@color/red"
         android:layout_marginTop="@dimen/size10"
         />
 

@@ -9,7 +9,7 @@ import com.msc.ar_drawing.utils.ViewEx.visible
 
 class OnBoardingAdapter : BaseAdapter<OnBoarding, ItemOnboardingBinding>() {
 
-    override fun binData(viewBinding: ItemOnboardingBinding, item: OnBoarding) {
+    override fun binData(viewBinding: ItemOnboardingBinding, item: OnBoarding, i: Int) {
         viewBinding.apply {
             if(item.resImage == OnBoarding.FULL_NATIVE_FLAG){
                 layoutAdNative.visible()

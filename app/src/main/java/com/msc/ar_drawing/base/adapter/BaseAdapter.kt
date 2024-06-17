@@ -7,12 +7,22 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseAdapter<T, V : ViewBinding> :
     RecyclerView.Adapter<BaseAdapter<T, V>.BaseViewHolder>() {
 
+    var preSelect = -1
+    var select = -1
+
     val dataSet by lazy {
         initData()
     }
     var onClick: ((T) -> Unit)? = null
 
     var mRecyclerView: RecyclerView? = null
+
+    fun setSelectItem(i : Int){
+        preSelect = select
+        select = i
+        notifyItemChanged(preSelect)
+        notifyItemChanged(select)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return BaseViewHolder(provideViewBinding(parent))
@@ -24,7 +34,7 @@ abstract class BaseAdapter<T, V : ViewBinding> :
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        binData(holder.item, dataSet[position])
+        binData(holder.item, dataSet[position], position)
     }
 
     open fun setData(listItem: List<T>) {
@@ -52,7 +62,7 @@ abstract class BaseAdapter<T, V : ViewBinding> :
         return dataSet.size
     }
 
-    open fun binData(viewBinding: V, item: T){}
+    open fun binData(viewBinding: V, item: T, i : Int){}
     abstract fun provideViewBinding(parent: ViewGroup): V
     open fun initData(): ArrayList<T> {
         return arrayListOf()

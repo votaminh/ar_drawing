@@ -11,7 +11,7 @@ class LanguageAdapter : BaseAdapter<LanguageModel, ItemLanguageBinding>() {
         return ItemLanguageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
-    override fun binData(viewBinding: ItemLanguageBinding, item: LanguageModel) {
+    override fun binData(viewBinding: ItemLanguageBinding, item: LanguageModel, i: Int) {
         viewBinding.imgLanguage.setImageResource(item.iconRes)
         viewBinding.tvTitleLanguage.setText(item.nameRes)
         viewBinding.swLanguage.isChecked = item.selected

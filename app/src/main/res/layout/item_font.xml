@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/tvFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Font"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size14"
+        android:paddingHorizontal="@dimen/size10"
+        android:paddingTop="@dimen/size1"
+        android:paddingBottom="@dimen/size2"
+        android:layout_marginLeft="@dimen/size10"
+        android:background="@drawable/bg_black_round_stroke"
+        />
+
+</RelativeLayout>
