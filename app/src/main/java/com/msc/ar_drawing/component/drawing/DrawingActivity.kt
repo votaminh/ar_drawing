@@ -33,6 +33,8 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private var camera: Camera? = null
     private var imageAnalyzer: ImageAnalysis? = null
 
+    private var isFlip = false
+
     companion object {
         fun start(activity : Activity){
             activity.startActivity(Intent(activity, DrawingActivity::class.java))
@@ -64,7 +66,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 showToast("record")
             }
             flip.setOnClickListener {
-                showToast("flip")
+                flipImage()
             }
 
             Glide.with(this@DrawingActivity).load(DataStatic.selectBitmap).into(imvSticker)
@@ -75,6 +77,22 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                     onChangeOpacity(value);
                 }
             })
+        }
+    }
+
+    private fun flipImage() {
+        viewBinding.run {
+            isFlip = !isFlip
+            if(isFlip){
+                imvFlip.tintColorRes(R.color.app_main)
+                tvFlip.textColorRes(R.color.app_main)
+                imvSticker.animate().scaleX(-1f).setDuration(0).start()
+            }else{
+                imvFlip.tintColorRes(R.color.gray)
+                tvFlip.textColorRes(R.color.gray)
+                imvSticker.animate().scaleX(1f).setDuration(0).start()
+            }
+
         }
     }
 

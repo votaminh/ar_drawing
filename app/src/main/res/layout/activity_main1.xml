@@ -156,7 +156,7 @@
                     android:layout_width="@dimen/size18"
                     android:layout_height="@dimen/size18"
                     android:src="@drawable/ic_picture"
-                    />
+                    app:tint="@color/gray" />
                 <TextView
                     android:id="@+id/tvPicture"
                     android:layout_width="wrap_content"
@@ -164,6 +164,7 @@
                     android:text="@string/txt_picture"
                     android:textSize="@dimen/size11"
                     android:layout_marginTop="@dimen/size5"
+                    android:textColor="@color/gray"
                     />
             </LinearLayout>
 
@@ -181,13 +182,14 @@
                     android:layout_width="@dimen/size18"
                     android:layout_height="@dimen/size18"
                     android:src="@drawable/ic_flash"
-                    />
+                    app:tint="@color/gray" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_flash"
                     android:textSize="@dimen/size11"
                     android:layout_marginTop="@dimen/size5"
+                    android:textColor="@color/gray"
                     />
             </LinearLayout>
 
@@ -205,13 +207,14 @@
                     android:layout_width="@dimen/size18"
                     android:layout_height="@dimen/size18"
                     android:src="@drawable/ic_record"
-                    />
+                    app:tint="@color/gray" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_record"
                     android:textSize="@dimen/size11"
                     android:layout_marginTop="@dimen/size5"
+                    android:textColor="@color/gray"
                     />
             </LinearLayout>
 
@@ -226,16 +229,19 @@
                 android:layout_marginBottom="@dimen/size12"
                 >
                 <ImageView
+                    android:id="@+id/imvFlip"
                     android:layout_width="@dimen/size18"
                     android:layout_height="@dimen/size18"
                     android:src="@drawable/ic_flip"
-                    />
+                    app:tint="@color/gray" />
                 <TextView
+                    android:id="@+id/tvFlip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_flip"
                     android:textSize="@dimen/size11"
                     android:layout_marginTop="@dimen/size5"
+                    android:textColor="@color/gray"
                     />
             </LinearLayout>
 
