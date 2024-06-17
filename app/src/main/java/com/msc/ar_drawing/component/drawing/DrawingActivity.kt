@@ -1,7 +1,9 @@
 package com.msc.ar_drawing.component.drawing
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -12,9 +14,12 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.google.android.material.slider.Slider
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
+import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.PermissionUtils
 import com.msc.ar_drawing.utils.ViewEx.gone
 import com.msc.ar_drawing.utils.ViewEx.textColorRes
@@ -61,6 +66,22 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             flip.setOnClickListener {
                 showToast("flip")
             }
+
+            Glide.with(this@DrawingActivity).load(DataStatic.selectBitmap).into(imvSticker)
+
+            sliderOpacity.addOnChangeListener(object : Slider.OnChangeListener{
+                @SuppressLint("RestrictedApi")
+                override fun onValueChange(slider: Slider, value: Float, fromUser: Boolean) {
+                    onChangeOpacity(value);
+                }
+            })
+        }
+    }
+
+    private fun onChangeOpacity(value: Float) {
+        viewBinding.run {
+            imvSticker.animate().alpha(value).setDuration(0).start()
+            tvOpacityPercent.text = (value * 100).toInt().toString() + "%"
         }
     }
 

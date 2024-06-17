@@ -38,6 +38,7 @@
             app:cardCornerRadius="@dimen/size15"
             >
             <TextView
+                android:id="@+id/imvNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_next"

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import com.bumptech.glide.Glide
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.databinding.ActivityPreviewBinding
 import com.msc.ar_drawing.utils.DataStatic
 
@@ -21,6 +22,9 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>() {
 
     override fun initViews() {
         viewBinding.run {
+            imvNext.setOnClickListener {
+                DrawingActivity.start(this@PreviewActivity)
+            }
             Glide.with(this@PreviewActivity).load(DataStatic.selectBitmap).into(imvPreview)
         }
     }
