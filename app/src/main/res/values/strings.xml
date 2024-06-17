@@ -42,4 +42,12 @@
     <string name="txt_get_start">Get start</string>
     <string name="txt_share">Share</string>
     <string name="txt_preview">Preview</string>
+    <string name="txt_how_to_use_sketch">How to use sketch?</string>
+    <string name="txt_sketch_tutorial1">1. Place your phone on a cup so that it is parallel to the table</string>
+    <string name="txt_sketch_tutorial2">2. The image from the phone will be inverted and you can draw it from here</string>
+    <string name="txt_how_to_use_trace">How to use trace?</string>
+    <string name="txt_trace_tutorial1">1. After selecting your favorite image, the trace of the drawing will be displayed on the phone’s screen.</string>
+    <string name="txt_trace_tutorial2">2. Place a piece of paper on the screen and then proceed to draw the image.</string>
+    <string name="txt_trace_tutorial3"><![CDATA[3. Place tracing paper over the mobile screen & start tracing the object. \n]]></string>
+    <string name="txt_tutorial">Tutorial</string>
 </resources>

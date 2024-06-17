@@ -72,6 +72,10 @@
             android:name=".component.preview.PreviewActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".component.tutorial.TutorialActivity"
+            android:exported="true">
+        </activity>
 
         <activity
             android:name=".component.onboarding.OnBoardingActivity"

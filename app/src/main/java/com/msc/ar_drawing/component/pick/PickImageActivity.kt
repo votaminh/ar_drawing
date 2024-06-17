@@ -1,15 +1,18 @@
 package com.msc.ar_drawing.component.pick
 
-import android.R.attr
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
+import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.preview.PreviewActivity
+import com.msc.ar_drawing.component.tutorial.TutorialActivity
 import com.msc.ar_drawing.databinding.ActivityPickImageBinding
+import com.msc.ar_drawing.databinding.LayoutToolbarBinding
+import com.msc.ar_drawing.domain.layer.TypeDraw
 import com.msc.ar_drawing.utils.DataStatic
 
 
@@ -37,6 +40,32 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
 
             camera.setOnClickListener {
                 captureCamera()
+            }
+
+            toolbar.run {
+                imvRight.setOnClickListener {
+                    TutorialActivity.start(this@PickImageActivity)
+                }
+
+                imvLeft.setOnClickListener {
+                    finish()
+                }
+
+                updateTitle(this)
+            }
+        }
+    }
+
+    private fun updateTitle(layoutToolbarBinding: LayoutToolbarBinding) {
+        when(DataStatic.selectTypeDraw){
+            TypeDraw.SKETCH -> {
+                layoutToolbarBinding.tvTitle.setText(R.string.txt_sketch)
+            }
+            TypeDraw.TRACE -> {
+                layoutToolbarBinding.tvTitle.setText(R.string.txt_trace)
+            }
+            else ->{
+
             }
         }
     }

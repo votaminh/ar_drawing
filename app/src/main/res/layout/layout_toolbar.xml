@@ -12,6 +12,7 @@
         android:layout_height="@dimen/size40">
 
         <ImageView
+            android:id="@+id/imvLeft"
             android:layout_width="@dimen/size40"
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_back2"
@@ -19,6 +20,7 @@
             />
 
         <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_sketch"
@@ -29,6 +31,7 @@
             />
 
         <ImageView
+            android:id="@+id/imvRight"
             android:layout_width="@dimen/size40"
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_tutorial"

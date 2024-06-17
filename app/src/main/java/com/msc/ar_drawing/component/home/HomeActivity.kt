@@ -6,6 +6,8 @@ import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.pick.PickImageActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
+import com.msc.ar_drawing.domain.layer.TypeDraw
+import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -35,10 +37,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         viewBinding.run {
             sketch.setOnClickListener {
+                DataStatic.selectTypeDraw = TypeDraw.SKETCH
                 PickImageActivity.start(this@HomeActivity)
             }
 
             trace.setOnClickListener {
+                DataStatic.selectTypeDraw = TypeDraw.TRACE
                 PickImageActivity.start(this@HomeActivity)
             }
         }
