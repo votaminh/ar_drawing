@@ -8,4 +8,5 @@
     <color name="red">#FF564A</color>
     <color name="gray">#949494</color>
     <color name="app_main">#a289ff</color>
+    <color name="app_main_light">#f4f2ff</color>
 </resources>

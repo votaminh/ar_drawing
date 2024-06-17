@@ -9,7 +9,9 @@ import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.admob.NameRemoteAdmob
+import com.msc.ar_drawing.databinding.DialogApplyTextBinding
 import com.msc.ar_drawing.databinding.DialogExitBinding
+import com.msc.ar_drawing.utils.DialogEx.showDialogExit
 
 object DialogEx {
 
@@ -41,6 +43,15 @@ object DialogEx {
                     NativeAdmobUtils.nativeExitLiveData?.reLoad()
                 }
             }
+        }
+    }
+
+    fun Activity?.showDialogApplyText(){
+        this?.let {activity ->
+            val builder = AlertDialog.Builder(this)
+            val binding = DialogApplyTextBinding.inflate(LayoutInflater.from(this))
+            builder.setView(binding.root)
+            builder.show()
         }
     }
 }

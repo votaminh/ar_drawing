@@ -50,4 +50,9 @@
     <string name="txt_trace_tutorial2">2. Place a piece of paper on the screen and then proceed to draw the image.</string>
     <string name="txt_trace_tutorial3"><![CDATA[3. Place tracing paper over the mobile screen & start tracing the object. \n]]></string>
     <string name="txt_tutorial">Tutorial</string>
+    <string name="txt_add_text">Add Text</string>
+    <string name="txt_apply">Apply</string>
+    <string name="txt_select_font">Select Font</string>
+    <string name="txt_select_color">Select Color</string>
+    <string name="txt_type_here">Type here</string>
 </resources>

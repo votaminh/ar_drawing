@@ -120,6 +120,7 @@
 
     
     <androidx.cardview.widget.CardView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size80"
         android:layout_marginTop="@dimen/size20"

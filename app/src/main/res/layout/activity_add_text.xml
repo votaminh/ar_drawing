@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40">
+
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="@dimen/size40"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_back2"
+            android:padding="@dimen/size10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_add_text"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/dosis_semibold"
+            android:textSize="@dimen/size20"
+            android:textColor="@color/app_main"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            app:cardBackgroundColor="@color/app_main"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size10"
+            app:cardCornerRadius="@dimen/size15"
+            >
+            <TextView
+                android:id="@+id/imvNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_apply"
+                android:textColor="@color/white"
+                android:paddingHorizontal="@dimen/size20"
+                android:paddingVertical="@dimen/size5"
+                android:textSize="@dimen/size14"
+                />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size20"
+        android:background="@drawable/bg_input_add_text"
+        android:layout_marginHorizontal="@dimen/size16"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size140"
+            android:background="@android:color/transparent"
+            android:hint="@string/txt_type_here"
+            android:gravity="center"
+            android:textSize="@dimen/size16"
+            android:layout_margin="@dimen/size16"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_select_font"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/dosis_semibold"
+        android:textSize="@dimen/size14"
+        android:layout_marginLeft="@dimen/size16"
+        android:layout_marginTop="@dimen/size20"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size24"
+        android:background="@color/red"
+        android:layout_marginTop="@dimen/size10"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_select_color"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/dosis_semibold"
+        android:textSize="@dimen/size14"
+        android:layout_marginLeft="@dimen/size16"
+        android:layout_marginTop="@dimen/size20"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size24"
+        android:background="@color/red"
+        android:layout_marginTop="@dimen/size10"
+        />
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Intent
 import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.pick.PickImageActivity
+import com.msc.ar_drawing.component.text.AddTextActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
 import com.msc.ar_drawing.domain.layer.TypeDraw
 import com.msc.ar_drawing.utils.DataStatic
@@ -44,6 +45,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             trace.setOnClickListener {
                 DataStatic.selectTypeDraw = TypeDraw.TRACE
                 PickImageActivity.start(this@HomeActivity)
+            }
+
+            text.setOnClickListener {
+                DataStatic.selectTypeDraw = TypeDraw.TEXT
+                AddTextActivity.start(this@HomeActivity)
             }
         }
     }
