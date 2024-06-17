@@ -102,9 +102,9 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reColor"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size24"
-        android:background="@color/red"
+        android:layout_height="@dimen/size34"
         android:layout_marginTop="@dimen/size10"
         />
 </LinearLayout>

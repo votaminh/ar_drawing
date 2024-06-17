@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
 
     private val fontAdapter = FontAdapter()
+    private val colorAdapter = ColorAdapter()
     private val viewModel : AddTextViewModel by viewModels()
 
     companion object {
@@ -41,6 +42,19 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
 
         buildReFont()
         viewModel.getFonts()
+
+        buildReColor()
+        viewModel.getColors()
+    }
+
+    private fun buildReColor() {
+        viewBinding.reColor.run {
+            layoutManager = LinearLayoutManager(this@AddTextActivity, RecyclerView.HORIZONTAL, false)
+            adapter = colorAdapter
+            colorAdapter.onClick = {
+                viewBinding.edInput.setTextColor(it)
+            }
+        }
     }
 
     override fun initObserver() {
@@ -49,6 +63,10 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
         viewModel.run {
             fontsLive.observe(this@AddTextActivity){
                 fontAdapter.setData(it)
+            }
+
+            colorsLive.observe(this@AddTextActivity){
+                colorAdapter.setData(it)
             }
         }
     }
