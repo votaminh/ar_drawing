@@ -2,7 +2,6 @@ package com.msc.ar_drawing.component.text
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,7 @@ import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.databinding.ActivityAddTextBinding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showDialogApplyText
+import com.msc.ar_drawing.utils.DialogEx.showPickerColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,13 +60,6 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
     }
 
     private fun openDraw() {
-        var color = Color.BLACK
-        colorAdapter.select.let {
-            if(it != -1){
-                color = colorAdapter.getListData()[it]
-            }
-        }
-
         var typeface : Typeface? = null
         fontAdapter.select.let {
             if(it != -1){
@@ -78,7 +71,7 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
             this@AddTextActivity,
             DataStatic.selectDrawMode,
             viewBinding.edInput.text.toString().trim(),
-            color,
+            DataStatic.currentColorText,
             typeface
         )
     }
@@ -87,8 +80,16 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
         viewBinding.reColor.run {
             layoutManager = LinearLayoutManager(this@AddTextActivity, RecyclerView.HORIZONTAL, false)
             adapter = colorAdapter
-            colorAdapter.onClick = {
-                viewBinding.edInput.setTextColor(it)
+            colorAdapter.onClick = { it ->
+                if(it == -1){
+                    showPickerColor{
+                        viewBinding.edInput.setTextColor(it)
+                        DataStatic.currentColorText = it
+                    }
+                }else{
+                    viewBinding.edInput.setTextColor(it)
+                    DataStatic.currentColorText = it
+                }
             }
         }
     }

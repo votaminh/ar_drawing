@@ -12,6 +12,8 @@ import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.databinding.DialogApplyTextBinding
 import com.msc.ar_drawing.databinding.DialogExitBinding
 import com.msc.ar_drawing.utils.DialogEx.showDialogExit
+import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 object DialogEx {
 
@@ -62,5 +64,22 @@ object DialogEx {
                 }
             }
         }
+    }
+
+    fun Activity.showPickerColor(pickedAction : ((Int) -> Unit)? = null){
+        ColorPickerDialog.Builder(this)
+            .setTitle("ColorPicker Dialog")
+            .setPreferenceName("MyColorPickerDialog")
+            .setPositiveButton("Select",
+                ColorEnvelopeListener { envelope, fromUser ->
+                    val color = envelope.color
+                    pickedAction?.invoke(color)
+                })
+            .setNegativeButton(this.getString(android.R.string.cancel)
+            ) { dialogInterface, i -> dialogInterface.dismiss() }
+            .attachAlphaSlideBar(true) // the default value is true.
+            .attachBrightnessSlideBar(true) // the default value is true.
+            .setBottomSpace(12) // set a bottom space between the last slidebar and buttons.
+            .show()
     }
 }

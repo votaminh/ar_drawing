@@ -28,6 +28,7 @@ import com.msc.ar_drawing.component.text.AddTextViewModel
 import com.msc.ar_drawing.component.text.ColorAdapter
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.DataStatic
+import com.msc.ar_drawing.utils.DialogEx.showPickerColor
 import com.msc.ar_drawing.utils.PermissionUtils
 import com.msc.ar_drawing.utils.ViewEx.gone
 import com.msc.ar_drawing.utils.ViewEx.invisible
@@ -143,7 +144,13 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             layoutManager = LinearLayoutManager(this@DrawingActivity, RecyclerView.HORIZONTAL, false)
             adapter = colorAdapter
             colorAdapter.onClick = {
-                viewBinding.maskBgTrace.setBackgroundColor(it)
+                if(it == -1){
+                    showPickerColor{
+                        viewBinding.maskBgTrace.setBackgroundColor(it)
+                    }
+                }else{
+                    viewBinding.maskBgTrace.setBackgroundColor(it)
+                }
             }
         }
     }
