@@ -5,6 +5,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.media.MediaScannerConnection
 import android.media.RingtoneManager
 import android.net.Uri
@@ -46,5 +48,24 @@ object AppEx {
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
+    fun Any.replaceWhiteToTransparentBitmap(bitmap: Bitmap) : Bitmap?{
+        if (bitmap == null) {
+            return null
+        }
+
+        val width = bitmap.width
+        val height = bitmap.height
+        val pixels = IntArray(width * height)
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+
+        for (i in pixels.indices) {
+            if (pixels[i] == Color.WHITE) {
+                pixels[i] = Color.TRANSPARENT
+            }
+        }
+
+        return Bitmap.createBitmap(pixels, width, height, Bitmap.Config.ARGB_8888)
     }
 }

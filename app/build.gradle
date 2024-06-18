@@ -154,4 +154,8 @@ dependencies {
 
     // picker color
     implementation "com.github.skydoves:colorpickerview:2.3.0"
+
+    // gpu
+    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
+
 }

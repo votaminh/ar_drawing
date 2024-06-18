@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -27,6 +29,7 @@ import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.text.AddTextViewModel
 import com.msc.ar_drawing.component.text.ColorAdapter
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
+import com.msc.ar_drawing.utils.AppEx.replaceWhiteToTransparentBitmap
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showPickerColor
 import com.msc.ar_drawing.utils.PermissionUtils
@@ -36,6 +39,11 @@ import com.msc.ar_drawing.utils.ViewEx.textColorRes
 import com.msc.ar_drawing.utils.ViewEx.tintColorRes
 import com.msc.ar_drawing.utils.ViewEx.visible
 import dagger.hilt.android.AndroidEntryPoint
+import jp.co.cyberagent.android.gpuimage.GPUImage
+import jp.co.cyberagent.android.gpuimage.filter.GPUImageSketchFilter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 
 @AndroidEntryPoint
@@ -64,6 +72,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
         const val TEXT_ASSET = 4;
 
         var currentBitmapSticker : Bitmap? = null
+        var currentSketchBitmapSticker : Bitmap? = null
         var currentTypeface : Typeface? = null
 
         fun startWithBitmap(activity: Activity, drawMode : Int, bitmap: Bitmap){
@@ -118,6 +127,14 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             }
             line.setOnClickListener {
                 showMenu(imvLineColor, tvLineColor, menuLineColor)
+            }
+
+            originalImage.setOnClickListener {
+                Glide.with(this@DrawingActivity).load(currentBitmapSticker).into(imvSticker)
+            }
+
+            sketchImage.setOnClickListener {
+                Glide.with(this@DrawingActivity).load(currentSketchBitmapSticker).into(imvSticker)
             }
 
             sliderOpacity.addOnChangeListener(Slider.OnChangeListener { _, value, _ -> onChangeOpacity(value); })
@@ -180,6 +197,14 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                         imvSticker.visible()
                         tvSticker.invisible()
                         Glide.with(this@DrawingActivity).load(currentBitmapSticker).into(imvSticker)
+                        val gpuimageview = GPUImage(this@DrawingActivity)
+                        gpuimageview.run {
+                            setImage(currentBitmapSticker)
+                            setFilter(GPUImageSketchFilter())
+                            CoroutineScope(Dispatchers.IO).launch {
+                                currentSketchBitmapSticker = replaceWhiteToTransparentBitmap(bitmapWithFilterApplied)
+                            }
+                        }
                     }
 
                     TEXT_ASSET -> {
