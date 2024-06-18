@@ -130,10 +130,18 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             }
 
             originalImage.setOnClickListener {
+                originalImage.setBackgroundResource(R.drawable.bg_main_round_stroke)
+                sketchImage.setBackgroundResource(R.drawable.bg_black_round_stroke)
+                originalImage.textColorRes(R.color.app_main)
+                sketchImage.textColorRes(R.color.black)
                 Glide.with(this@DrawingActivity).load(currentBitmapSticker).into(imvSticker)
             }
 
             sketchImage.setOnClickListener {
+                sketchImage.setBackgroundResource(R.drawable.bg_main_round_stroke)
+                originalImage.setBackgroundResource(R.drawable.bg_black_round_stroke)
+                sketchImage.textColorRes(R.color.app_main)
+                originalImage.textColorRes(R.color.black)
                 Glide.with(this@DrawingActivity).load(currentSketchBitmapSticker).into(imvSticker)
             }
 
