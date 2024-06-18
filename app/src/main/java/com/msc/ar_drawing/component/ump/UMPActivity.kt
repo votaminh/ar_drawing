@@ -33,7 +33,7 @@ class UMPActivity : BaseActivity<ActivityUmpBinding>() {
         app.initAds()
 
         SpManager.getInstance(this).setUMPShowed(true)
-        DrawingActivity.start(this);
+//        DrawingActivity.start(this);
         finish()
     }
 

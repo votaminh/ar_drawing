@@ -8,11 +8,11 @@ import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.component.preview.PreviewActivity
 import com.msc.ar_drawing.component.tutorial.TutorialActivity
 import com.msc.ar_drawing.databinding.ActivityPickImageBinding
 import com.msc.ar_drawing.databinding.LayoutToolbarBinding
-import com.msc.ar_drawing.domain.layer.TypeDraw
 import com.msc.ar_drawing.utils.DataStatic
 
 
@@ -57,11 +57,11 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
     }
 
     private fun updateTitle(layoutToolbarBinding: LayoutToolbarBinding) {
-        when(DataStatic.selectTypeDraw){
-            TypeDraw.SKETCH -> {
+        when(DataStatic.selectDrawMode){
+            DrawingActivity.SKETCH_DRAWING_MODE -> {
                 layoutToolbarBinding.tvTitle.setText(R.string.txt_sketch)
             }
-            TypeDraw.TRACE -> {
+            DrawingActivity.TRACE_DRAWING_MODE -> {
                 layoutToolbarBinding.tvTitle.setText(R.string.txt_trace)
             }
             else ->{

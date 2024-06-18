@@ -3,6 +3,9 @@ package com.msc.ar_drawing.component.drawing
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Typeface
+import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -22,6 +25,7 @@ import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.PermissionUtils
 import com.msc.ar_drawing.utils.ViewEx.gone
+import com.msc.ar_drawing.utils.ViewEx.invisible
 import com.msc.ar_drawing.utils.ViewEx.textColorRes
 import com.msc.ar_drawing.utils.ViewEx.tintColorRes
 import com.msc.ar_drawing.utils.ViewEx.visible
@@ -36,8 +40,40 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private var isFlip = false
 
     companion object {
-        fun start(activity : Activity){
-            activity.startActivity(Intent(activity, DrawingActivity::class.java))
+
+        private const val KEY_DRAWING_MODE = "KEY_DRAWING_MODE"
+        private const val KEY_ASSET_TYPE = "KEY_ASSET_TYPE"
+        private const val KEY_TEXT = "KEY_TEXT"
+        private const val KEY_COLOR_TEXT = "KEY_COLOR_TEXT"
+
+        const val SKETCH_DRAWING_MODE = 1;
+        const val TRACE_DRAWING_MODE = 2;
+        private const val BITMAP_ASSET = 3;
+        const val TEXT_ASSET = 4;
+
+        var currentBitmapSticker : Bitmap? = null
+        var currentTypeface : Typeface? = null
+
+        fun startWithBitmap(activity: Activity, drawMode : Int, bitmap: Bitmap){
+            val intent = Intent(activity, DrawingActivity::class.java )
+            intent.putExtra(KEY_DRAWING_MODE, drawMode)
+            intent.putExtra(KEY_ASSET_TYPE, BITMAP_ASSET)
+
+            currentBitmapSticker = bitmap
+
+            activity.startActivity(intent)
+        }
+
+        fun startWithText(activity: Activity, drawMode: Int, text : String, color : Int, typeface: Typeface?){
+            val intent = Intent(activity, DrawingActivity::class.java)
+            intent.putExtra(KEY_DRAWING_MODE, drawMode)
+            intent.putExtra(KEY_ASSET_TYPE, TEXT_ASSET)
+            intent.putExtra(KEY_COLOR_TEXT, color)
+            intent.putExtra(KEY_TEXT, text)
+
+            currentTypeface = typeface
+
+            activity.startActivity(intent)
         }
     }
 
@@ -69,15 +105,56 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 flipImage()
             }
 
-            Glide.with(this@DrawingActivity).load(DataStatic.selectBitmap).into(imvSticker)
-
-            sliderOpacity.addOnChangeListener(object : Slider.OnChangeListener{
-                @SuppressLint("RestrictedApi")
-                override fun onValueChange(slider: Slider, value: Float, fromUser: Boolean) {
-                    onChangeOpacity(value);
-                }
-            })
+            sliderOpacity.addOnChangeListener(Slider.OnChangeListener { _, value, _ -> onChangeOpacity(value); })
         }
+
+        checkDataIntent()
+    }
+
+    private fun checkDataIntent() {
+        viewBinding.run {
+            intent.extras?.let { extras ->
+                val drawMode = extras.getInt(KEY_DRAWING_MODE)
+                val assetType = extras.getInt(KEY_ASSET_TYPE)
+
+                when(drawMode){
+                    SKETCH_DRAWING_MODE -> {
+
+                    }
+
+                    TRACE_DRAWING_MODE -> {
+
+                    }
+                }
+
+                when(assetType){
+                    BITMAP_ASSET -> {
+                        imvSticker.visible()
+                        tvSticker.invisible()
+                        Glide.with(this@DrawingActivity).load(currentBitmapSticker).into(imvSticker)
+                    }
+
+                    TEXT_ASSET -> {
+                        tvSticker.visible()
+                        imvSticker.invisible()
+                        setDatText(tvSticker, extras)
+                    }
+
+                    else -> {
+
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setDatText(tvSticker: TextView, extras: Bundle) {
+        val text = extras.getString(KEY_TEXT)
+        val color = extras.getInt(KEY_COLOR_TEXT)
+
+        tvSticker.text = text
+        tvSticker.setTextColor(color)
+        tvSticker.typeface = currentTypeface
     }
 
     private fun flipImage() {
@@ -99,6 +176,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private fun onChangeOpacity(value: Float) {
         viewBinding.run {
             imvSticker.animate().alpha(value).setDuration(0).start()
+            tvSticker.animate().alpha(value).setDuration(0).start()
             tvOpacityPercent.text = (value * 100).toInt().toString() + "%"
         }
     }

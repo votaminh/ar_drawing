@@ -2,12 +2,11 @@ package com.msc.ar_drawing.component.home
 
 import android.app.Activity
 import android.content.Intent
-import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.component.pick.PickImageActivity
 import com.msc.ar_drawing.component.text.AddTextActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
-import com.msc.ar_drawing.domain.layer.TypeDraw
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,17 +37,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         viewBinding.run {
             sketch.setOnClickListener {
-                DataStatic.selectTypeDraw = TypeDraw.SKETCH
+                DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
                 PickImageActivity.start(this@HomeActivity)
             }
 
             trace.setOnClickListener {
-                DataStatic.selectTypeDraw = TypeDraw.TRACE
+                DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
                 PickImageActivity.start(this@HomeActivity)
             }
 
             text.setOnClickListener {
-                DataStatic.selectTypeDraw = TypeDraw.TEXT
                 AddTextActivity.start(this@HomeActivity)
             }
         }

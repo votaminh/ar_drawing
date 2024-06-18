@@ -2,11 +2,15 @@ package com.msc.ar_drawing.component.text
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.databinding.ActivityAddTextBinding
+import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showDialogApplyText
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +40,15 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
              }
 
             imvNext.setOnClickListener {
-                showDialogApplyText()
+                showDialogApplyText(
+                    sketchAction = {
+                        DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
+                        openDraw()
+                    },
+                    traceAction = {
+                        DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
+                        openDraw()
+                    })
             }
         }
 
@@ -45,6 +57,30 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
 
         buildReColor()
         viewModel.getColors()
+    }
+
+    private fun openDraw() {
+        var color = Color.BLACK
+        colorAdapter.select.let {
+            if(it != -1){
+                color = colorAdapter.getListData()[it]
+            }
+        }
+
+        var typeface : Typeface? = null
+        fontAdapter.select.let {
+            if(it != -1){
+                typeface = fontAdapter.getListData()[it]
+            }
+        }
+
+        DrawingActivity.startWithText(
+            this@AddTextActivity,
+            DataStatic.selectDrawMode,
+            viewBinding.edInput.text.toString().trim(),
+            color,
+            typeface
+        )
     }
 
     private fun buildReColor() {

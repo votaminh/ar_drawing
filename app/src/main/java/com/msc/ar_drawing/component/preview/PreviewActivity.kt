@@ -23,7 +23,13 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>() {
     override fun initViews() {
         viewBinding.run {
             imvNext.setOnClickListener {
-                DrawingActivity.start(this@PreviewActivity)
+                DataStatic.selectBitmap?.let { it1 ->
+                    DrawingActivity.startWithBitmap(
+                        this@PreviewActivity,
+                        DataStatic.selectDrawMode,
+                        it1
+                    )
+                }
             }
             Glide.with(this@PreviewActivity).load(DataStatic.selectBitmap).into(imvPreview)
         }

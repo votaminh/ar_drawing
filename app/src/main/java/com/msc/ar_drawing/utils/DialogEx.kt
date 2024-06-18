@@ -46,12 +46,21 @@ object DialogEx {
         }
     }
 
-    fun Activity?.showDialogApplyText(){
+    fun Activity?.showDialogApplyText(sketchAction : (() -> Unit)? = null, traceAction : (() -> Unit)? = null){
         this?.let {activity ->
             val builder = AlertDialog.Builder(this)
             val binding = DialogApplyTextBinding.inflate(LayoutInflater.from(this))
             builder.setView(binding.root)
             builder.show()
+
+            binding.run {
+                sketch.setOnClickListener {
+                    sketchAction?.invoke()
+                }
+                trace.setOnClickListener {
+                    traceAction?.invoke()
+                }
+            }
         }
     }
 }
