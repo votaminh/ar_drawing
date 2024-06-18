@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <androidx.camera.view.PreviewView
         android:id="@+id/preview"
@@ -11,6 +12,13 @@
         >
 
     </androidx.camera.view.PreviewView>
+
+    <View
+        android:id="@+id/maskBgTrace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        />
 
     <ImageView
         android:id="@+id/imvSticker"
@@ -108,6 +116,24 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/menuLineColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/size20"
+                android:paddingVertical="@dimen/size15"
+                android:gravity="center"
+                android:visibility="gone"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size32"
+                    />
+
+            </LinearLayout>
         </RelativeLayout>
 
         <View
@@ -176,6 +202,35 @@
                     />
             </LinearLayout>
 
+
+            <LinearLayout
+                android:id="@+id/line"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_marginBottom="@dimen/size12"
+                android:visibility="gone"
+                >
+                <ImageView
+                    android:id="@+id/imvLineColor"
+                    android:layout_width="@dimen/size18"
+                    android:layout_height="@dimen/size18"
+                    android:src="@drawable/ic_line"
+                    app:tint="@color/gray" />
+                <TextView
+                    android:id="@+id/tvLineColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_line_color"
+                    android:textSize="@dimen/size11"
+                    android:layout_marginTop="@dimen/size5"
+                    android:textColor="@color/gray"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/flash"
                 android:layout_width="0dp"
@@ -210,6 +265,7 @@
                 android:gravity="center"
                 android:layout_marginTop="@dimen/size10"
                 android:layout_marginBottom="@dimen/size12"
+                android:visibility="gone"
                 >
                 <ImageView
                     android:layout_width="@dimen/size18"

@@ -55,4 +55,5 @@
     <string name="txt_select_font">Select Font</string>
     <string name="txt_select_color">Select Color</string>
     <string name="txt_type_here">Type here</string>
+    <string name="txt_line_color">Line Color</string>
 </resources>

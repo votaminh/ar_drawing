@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -17,10 +18,14 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.slider.Slider
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.text.AddTextViewModel
+import com.msc.ar_drawing.component.text.ColorAdapter
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.PermissionUtils
@@ -29,15 +34,21 @@ import com.msc.ar_drawing.utils.ViewEx.invisible
 import com.msc.ar_drawing.utils.ViewEx.textColorRes
 import com.msc.ar_drawing.utils.ViewEx.tintColorRes
 import com.msc.ar_drawing.utils.ViewEx.visible
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executors
 
+@AndroidEntryPoint
 class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
     private val cameraExecutor = Executors.newSingleThreadExecutor()
     private var camera: Camera? = null
     private var imageAnalyzer: ImageAnalysis? = null
 
+    private val colorAdapter = ColorAdapter()
+
     private var isFlip = false
+
+    private val viewModel : AddTextViewModel by viewModels()
 
     companion object {
 
@@ -104,11 +115,37 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             flip.setOnClickListener {
                 flipImage()
             }
+            line.setOnClickListener {
+                showMenu(imvLineColor, tvLineColor, menuLineColor)
+            }
 
             sliderOpacity.addOnChangeListener(Slider.OnChangeListener { _, value, _ -> onChangeOpacity(value); })
         }
 
         checkDataIntent()
+
+        buildReColor()
+        viewModel.getColors()
+    }
+
+    override fun initObserver() {
+        super.initObserver()
+
+        viewModel.run {
+            colorsLive.observe(this@DrawingActivity){
+                colorAdapter.setData(it)
+            }
+        }
+    }
+
+    private fun buildReColor() {
+        viewBinding.reColor.run {
+            layoutManager = LinearLayoutManager(this@DrawingActivity, RecyclerView.HORIZONTAL, false)
+            adapter = colorAdapter
+            colorAdapter.onClick = {
+                viewBinding.maskBgTrace.setBackgroundColor(it)
+            }
+        }
     }
 
     private fun checkDataIntent() {
@@ -119,11 +156,15 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
                 when(drawMode){
                     SKETCH_DRAWING_MODE -> {
-
+                        line.gone()
+                        flash.visible()
+                        maskBgTrace.gone()
                     }
 
                     TRACE_DRAWING_MODE -> {
-
+                        line.visible()
+                        flash.gone()
+                        maskBgTrace.visible()
                     }
                 }
 
@@ -191,8 +232,12 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             imvOpacity.tintColorRes(R.color.gray)
             tvOpacity.textColorRes(R.color.gray)
 
+            imvLineColor.tintColorRes(R.color.gray)
+            tvLineColor.textColorRes(R.color.gray)
+
             menuPicture.gone()
             menuOpacity.gone()
+            menuLineColor.gone()
         }
 
         menu.visible()
