@@ -3,16 +3,18 @@ package com.msc.ar_drawing.component.ump
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.App
 import com.msc.ar_drawing.component.drawing.DrawingActivity
+import com.msc.ar_drawing.component.splash.SplashActivity
+import com.msc.ar_drawing.databinding.ActivitySplashBinding
 import com.msc.ar_drawing.databinding.ActivityUmpBinding
 import com.msc.ar_drawing.utils.RemoteConfig
 import com.msc.ar_drawing.utils.SpManager
 import com.msc.ar_drawing.utils.UMPUtils
 
 
-class UMPActivity : BaseActivity<ActivityUmpBinding>() {
+class UMPActivity : BaseActivity<ActivitySplashBinding>() {
     private val TAG = "ump_activity"
 
-    override fun provideViewBinding(): ActivityUmpBinding = ActivityUmpBinding.inflate(layoutInflater)
+    override fun provideViewBinding(): ActivitySplashBinding = ActivitySplashBinding.inflate(layoutInflater)
 
     override fun initData() {
         super.initData()
@@ -33,7 +35,7 @@ class UMPActivity : BaseActivity<ActivityUmpBinding>() {
         app.initAds()
 
         SpManager.getInstance(this).setUMPShowed(true)
-//        DrawingActivity.start(this);
+        SplashActivity.start(this)
         finish()
     }
 
