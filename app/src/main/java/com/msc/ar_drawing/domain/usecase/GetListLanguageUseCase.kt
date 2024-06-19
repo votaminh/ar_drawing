@@ -4,8 +4,7 @@ import com.msc.ar_drawing.R
 import com.msc.ar_drawing.domain.layer.LanguageModel
 import javax.inject.Inject
 
-class GetListLanguageUseCase @Inject constructor() :
-    UseCase<GetListLanguageUseCase.Param, List<LanguageModel>>() {
+class GetListLanguageUseCase @Inject constructor() : UseCase<GetListLanguageUseCase.Param, List<LanguageModel>>() {
 
     open class Param() : UseCase.Param()
 

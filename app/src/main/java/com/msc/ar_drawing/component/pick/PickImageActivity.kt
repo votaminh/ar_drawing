@@ -5,18 +5,31 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.provider.MediaStore
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
+import com.msc.ar_drawing.component.home.ImageDrawAdapter
 import com.msc.ar_drawing.component.preview.PreviewActivity
 import com.msc.ar_drawing.component.tutorial.TutorialActivity
 import com.msc.ar_drawing.databinding.ActivityPickImageBinding
 import com.msc.ar_drawing.databinding.LayoutToolbarBinding
 import com.msc.ar_drawing.utils.DataStatic
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
+
+    val viewModel : PickImageViewModel by viewModels()
+    private val imageDrawAdapter = ImageDrawAdapter()
 
     companion object {
 
@@ -53,6 +66,42 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
 
                 updateTitle(this)
             }
+        }
+
+        buildReImage()
+        viewModel.getListImage()
+    }
+
+    private fun buildReImage() {
+        viewBinding.reImage.run {
+            layoutManager = GridLayoutManager(this@PickImageActivity, 3, RecyclerView.VERTICAL, false)
+            adapter = imageDrawAdapter
+            imageDrawAdapter.onClick = {
+                Glide.with(this@PickImageActivity)
+                    .asBitmap()
+                    .load(Uri.parse("file:///android_asset/$it"))
+                    .into(object : CustomTarget<Bitmap>() {
+                        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                            DataStatic.selectBitmap = resource
+                            PreviewActivity.start(this@PickImageActivity)
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                        }
+
+                        override fun onLoadFailed(errorDrawable: Drawable?) {
+                            super.onLoadFailed(errorDrawable)
+                        }
+                    })
+            }
+        }
+    }
+
+    override fun initObserver() {
+        super.initObserver()
+
+        viewModel.imagesPathLive.observe(this){
+            imageDrawAdapter.setData(it)
         }
     }
 

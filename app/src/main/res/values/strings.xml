@@ -56,4 +56,6 @@
     <string name="txt_select_color">Select Color</string>
     <string name="txt_type_here">Type here</string>
     <string name="txt_line_color">Line Color</string>
+    <string name="txt_for_you">For you</string>
+    <string name="txt_show_all"><![CDATA[Show all >>]]></string>
 </resources>

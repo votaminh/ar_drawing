@@ -12,6 +12,7 @@ import android.hardware.camera2.CameraManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Surface.ROTATION_0
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -321,7 +322,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
             imageAnalyzer = ImageAnalysis.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_16_9)
-                .setTargetRotation(viewBinding.preview.display.rotation)
+                .setTargetRotation(ROTATION_0)
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
@@ -339,5 +340,9 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             }
 
         }, ContextCompat.getMainExecutor(this))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

@@ -148,4 +148,39 @@
             android:alpha="0.3"
             />
     </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/size20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_for_you"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/size16"
+            />
+
+        <TextView
+            android:id="@+id/showAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/app_main"
+            android:text="@string/txt_show_all"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/size16"
+            />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginVertical="@dimen/size5"
+        />
 </LinearLayout>
