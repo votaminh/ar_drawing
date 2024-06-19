@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Animal Ringtone</string>
+    <string name="app_name" translatable="false">AR Drawing</string>
 
     <string name="english">English</string>
     <string name="vietnamese">Vietnamese</string>
