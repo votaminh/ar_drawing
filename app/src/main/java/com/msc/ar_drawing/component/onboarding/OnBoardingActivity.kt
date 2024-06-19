@@ -8,8 +8,10 @@ import com.msc.ar_drawing.R
 import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.admob.NativeAdmob
+import com.msc.ar_drawing.component.home.HomeActivity
 import com.msc.ar_drawing.component.permission.PermissionActivity
 import com.msc.ar_drawing.databinding.ActivityOnboardingBinding
+import com.msc.ar_drawing.utils.Constant
 import com.msc.ar_drawing.utils.NativeAdmobUtils
 import com.msc.ar_drawing.utils.NetworkUtil
 import com.msc.ar_drawing.utils.SpManager
@@ -62,7 +64,8 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
                 if (currentPosition < onBoardingAdapter.getListData().size - 1) {
                     vpOnBoarding.setCurrentItem(currentPosition + 1, true)
                 } else {
-                    PermissionActivity.start(this@OnBoardingActivity)
+                    SpManager.getInstance(this@OnBoardingActivity).saveOnBoarding()
+                    HomeActivity.start(this@OnBoardingActivity)
                     finish()
                 }
             }
