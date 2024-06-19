@@ -243,11 +243,13 @@
                 android:layout_marginBottom="@dimen/size12"
                 >
                 <ImageView
+                    android:id="@+id/imvFlash"
                     android:layout_width="@dimen/size18"
                     android:layout_height="@dimen/size18"
                     android:src="@drawable/ic_flash"
                     app:tint="@color/gray" />
                 <TextView
+                    android:id="@+id/tvFlash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_flash"

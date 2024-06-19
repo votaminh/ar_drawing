@@ -2,10 +2,13 @@ package com.msc.ar_drawing.component.drawing
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
+import android.hardware.camera2.CameraCharacteristics
+import android.hardware.camera2.CameraManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -56,6 +59,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private val colorAdapter = ColorAdapter()
 
     private var isFlip = false
+    private var isFlash = false
 
     private val viewModel : AddTextViewModel by viewModels()
 
@@ -103,11 +107,6 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     }
 
     override fun initViews() {
-        if(PermissionUtils.cameraGrant(this)){
-//            startCamera()
-        }else{
-            PermissionUtils.requestCamera(this, 322)
-        }
 
         viewBinding.run {
             opaciy.setOnClickListener {
@@ -117,7 +116,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 showMenu(imvPicture, tvPicture, menuPicture)
             }
             flash.setOnClickListener {
-                showToast("flash")
+                turnFlash()
             }
             record.setOnClickListener {
                 showToast("record")
@@ -152,6 +151,23 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
         buildReColor()
         viewModel.getColors()
+    }
+
+    private fun turnFlash() {
+        viewBinding.run {
+            if(isFlash){
+                isFlash = false
+                imvFlash.tintColorRes(R.color.gray)
+                tvFlash.textColorRes(R.color.gray)
+            }else{
+                isFlash = true
+                imvFlash.tintColorRes(R.color.app_main)
+                tvFlash.textColorRes(R.color.app_main)
+            }
+        }
+
+        val cameraControl = camera?.cameraControl
+        cameraControl?.enableTorch(isFlash)
     }
 
     override fun initObserver() {
@@ -191,6 +207,12 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                         line.gone()
                         flash.visible()
                         maskBgTrace.gone()
+
+                        if(PermissionUtils.cameraGrant(this@DrawingActivity)){
+                            startCamera()
+                        }else{
+                            PermissionUtils.requestCamera(this@DrawingActivity, 322)
+                        }
                     }
 
                     TRACE_DRAWING_MODE -> {
@@ -312,8 +334,6 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 preview.setSurfaceProvider(viewBinding.preview.surfaceProvider)
                 cameraProvider.unbindAll()
                 camera = cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalyzer, preview)
-//                val cameraControl = camera?.cameraControl
-//                cameraControl?.enableTorch(true)
 //                registerCameraFlashStatus()
             } catch (exc: Exception) {
             }
