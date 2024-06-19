@@ -15,6 +15,7 @@ import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.component.pick.PickImageActivity
 import com.msc.ar_drawing.component.preview.PreviewActivity
+import com.msc.ar_drawing.component.setting.SettingActivity
 import com.msc.ar_drawing.component.text.AddTextActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
 import com.msc.ar_drawing.utils.DataStatic
@@ -65,6 +66,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             showAll.setOnClickListener{
                 DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
                 PickImageActivity.start(this@HomeActivity)
+            }
+
+            setting.setOnClickListener{
+                SettingActivity.start(this@HomeActivity)
             }
         }
 

@@ -11,6 +11,7 @@ import com.msc.ar_drawing.admob.BaseAdmob
 import com.msc.ar_drawing.admob.CollapsiblePositionType
 import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.home.HomeActivity
 import com.msc.ar_drawing.component.language.LanguageActivity
 import com.msc.ar_drawing.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -116,7 +117,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         if (spManager.getShowOnBoarding()) {
             LanguageActivity.start(this, true)
         } else {
-//            startActivity(Intent(this, HomeActivity::class.java))
+            HomeActivity.start(this@SplashActivity)
         }
         finish()
     }

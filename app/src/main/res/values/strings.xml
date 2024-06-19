@@ -58,4 +58,7 @@
     <string name="txt_line_color">Line Color</string>
     <string name="txt_for_you">For you</string>
     <string name="txt_show_all"><![CDATA[Show all >>]]></string>
+    <string name="txt_setting">Setting</string>
+    <string name="txt_rate_us">Rate us</string>
+    <string name="txt_privacy_policy">Privacy policy</string>
 </resources>

@@ -34,6 +34,7 @@
             android:src="@drawable/ic_more_app"
             android:paddingHorizontal="@dimen/size5"
             android:layout_marginHorizontal="@dimen/size2"
+            android:visibility="invisible"
             />
 
         <ImageView
@@ -41,9 +42,12 @@
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_vip"
             android:paddingHorizontal="@dimen/size5"
-            android:layout_marginHorizontal="@dimen/size2"/>
+            android:layout_marginHorizontal="@dimen/size2"
+            android:visibility="invisible"
+            />
 
         <ImageView
+            android:id="@+id/setting"
             android:layout_width="@dimen/size30"
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_setting2"
