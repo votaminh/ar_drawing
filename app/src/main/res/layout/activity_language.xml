@@ -18,7 +18,7 @@
             android:layout_height="@dimen/size40"
             android:src="@drawable/ic_back"
             android:layout_centerVertical="true"
-            app:tint="@color/black"
+            app:tint="@color/app_main"
             android:padding="@dimen/size6"
             />
 
@@ -27,8 +27,9 @@
             style="@style/TextView_Headline1"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/size16"
-            android:textColor="@color/black"
+            android:textColor="@color/app_main"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/dosis_semibold"
             />
 
         <TextView
@@ -37,7 +38,7 @@
             style="@style/TextView_Headline2"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/app_main"
+            android:textColor="@color/white"
             android:paddingVertical="@dimen/size5"
             android:paddingHorizontal="@dimen/size15"
             android:layout_marginRight="@dimen/size10"
