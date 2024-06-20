@@ -268,10 +268,12 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 imvFlip.tintColorRes(R.color.app_main)
                 tvFlip.textColorRes(R.color.app_main)
                 imvSticker.animate().scaleX(-1f).setDuration(0).start()
+                tvSticker.animate().scaleX(-1f).setDuration(0).start()
             }else{
                 imvFlip.tintColorRes(R.color.gray)
                 tvFlip.textColorRes(R.color.gray)
                 imvSticker.animate().scaleX(1f).setDuration(0).start()
+                tvSticker.animate().scaleX(1f).setDuration(0).start()
             }
 
         }
