@@ -31,6 +31,11 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>() {
                     )
                 }
             }
+
+            imvBack.setOnClickListener{
+                finish()
+            }
+
             Glide.with(this@PreviewActivity).load(DataStatic.selectBitmap).into(imvPreview)
         }
     }

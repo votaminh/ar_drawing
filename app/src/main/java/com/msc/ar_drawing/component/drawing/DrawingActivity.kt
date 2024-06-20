@@ -345,4 +345,17 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     override fun onDestroy() {
         super.onDestroy()
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 322){
+            if(PermissionUtils.cameraGrant(this@DrawingActivity)){
+                startCamera()
+            }
+        }
+    }
 }
