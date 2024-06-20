@@ -14,6 +14,7 @@ abstract class BaseAdapter<T, V : ViewBinding> :
         initData()
     }
     var onClick: ((T) -> Unit)? = null
+    var onClickWithPosition : ((T, Int) -> Unit)?  = null
 
     var mRecyclerView: RecyclerView? = null
 

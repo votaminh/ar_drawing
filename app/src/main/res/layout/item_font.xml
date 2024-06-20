@@ -6,16 +6,14 @@
 
     <TextView
         android:id="@+id/tvFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size70"
+        android:layout_height="@dimen/size30"
         android:text="Font"
         android:textColor="@color/black"
         android:textSize="@dimen/size14"
-        android:paddingHorizontal="@dimen/size10"
-        android:paddingTop="@dimen/size1"
-        android:paddingBottom="@dimen/size2"
-        android:layout_marginLeft="@dimen/size10"
         android:background="@drawable/bg_black_round_stroke"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/size10"
         />
 
 </RelativeLayout>

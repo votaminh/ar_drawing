@@ -36,7 +36,7 @@ class ColorAdapter : BaseAdapter<Int, ItemColorBinding>() {
 
             root.setOnClickListener {
                 onClick?.invoke(item)
-                setSelectItem(i)
+                onClickWithPosition?.invoke(item, i)
             }
         }
     }

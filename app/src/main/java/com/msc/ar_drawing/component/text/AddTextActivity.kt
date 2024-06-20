@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.msc.ar_drawing.R
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.databinding.ActivityAddTextBinding
@@ -40,15 +41,19 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
              }
 
             imvNext.setOnClickListener {
-                showDialogApplyText(
-                    sketchAction = {
-                        DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
-                        openDraw()
-                    },
-                    traceAction = {
-                        DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
-                        openDraw()
-                    })
+                if(edInput.text.toString().isEmpty()){
+                    showToast(getString(R.string.txt_you_have_type_text))
+                }else{
+                    showDialogApplyText(
+                        sketchAction = {
+                            DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
+                            openDraw()
+                        },
+                        traceAction = {
+                            DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
+                            openDraw()
+                        })
+                }
             }
         }
 
@@ -80,15 +85,17 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
         viewBinding.reColor.run {
             layoutManager = LinearLayoutManager(this@AddTextActivity, RecyclerView.HORIZONTAL, false)
             adapter = colorAdapter
-            colorAdapter.onClick = { it ->
+            colorAdapter.onClickWithPosition = { it, i ->
                 if(it == -1){
                     showPickerColor{
                         viewBinding.edInput.setTextColor(it)
                         DataStatic.currentColorText = it
+                        colorAdapter.setSelectItem(i)
                     }
                 }else{
                     viewBinding.edInput.setTextColor(it)
                     DataStatic.currentColorText = it
+                    colorAdapter.setSelectItem(i)
                 }
             }
         }
