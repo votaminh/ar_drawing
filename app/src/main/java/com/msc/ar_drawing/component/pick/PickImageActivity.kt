@@ -23,6 +23,7 @@ import com.msc.ar_drawing.component.tutorial.TutorialActivity
 import com.msc.ar_drawing.databinding.ActivityPickImageBinding
 import com.msc.ar_drawing.databinding.LayoutToolbarBinding
 import com.msc.ar_drawing.utils.DataStatic
+import com.msc.ar_drawing.utils.PermissionUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -120,8 +121,12 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
     }
 
     private fun captureCamera(){
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, REQUEST_CAMERA)
+        if(PermissionUtils.cameraGrant(this@PickImageActivity)){
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, REQUEST_CAMERA)
+        }else{
+            PermissionUtils.requestCamera(this@PickImageActivity, 322)
+        }
     }
 
     private fun openGallery() {

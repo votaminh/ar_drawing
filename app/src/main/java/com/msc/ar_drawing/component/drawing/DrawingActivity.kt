@@ -162,9 +162,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private fun turnFlash() {
         viewBinding.run {
             if(isFlash){
-                isFlash = false
-                imvFlash.tintColorRes(R.color.gray)
-                tvFlash.textColorRes(R.color.gray)
+                turnOffFlash()
             }else{
                 isFlash = true
                 imvFlash.tintColorRes(R.color.app_main)
@@ -174,6 +172,12 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
         val cameraControl = camera?.cameraControl
         cameraControl?.enableTorch(isFlash)
+    }
+
+    private fun turnOffFlash() {
+        isFlash = false
+        viewBinding.imvFlash.tintColorRes(R.color.gray)
+        viewBinding.tvFlash.textColorRes(R.color.gray)
     }
 
     override fun initObserver() {
@@ -353,6 +357,11 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    override fun onPause() {
+        turnOffFlash()
+        super.onPause()
     }
 
     override fun onRequestPermissionsResult(
