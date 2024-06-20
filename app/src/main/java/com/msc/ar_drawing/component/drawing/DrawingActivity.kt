@@ -53,6 +53,7 @@ import java.util.concurrent.Executors
 @AndroidEntryPoint
 class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
+    private var assetType: Int = BITMAP_ASSET
     private val cameraExecutor = Executors.newSingleThreadExecutor()
     private var camera: Camera? = null
     private var imageAnalyzer: ImageAnalysis? = null
@@ -114,7 +115,11 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 showMenu(imvOpacity, tvOpacity, menuOpacity)
             }
             picture.setOnClickListener {
-                showMenu(imvPicture, tvPicture, menuPicture)
+                if(assetType == BITMAP_ASSET){
+                    showMenu(imvPicture, tvPicture, menuPicture)
+                }else{
+                    showToast(getString(R.string.txt_not_support_in_text))
+                }
             }
             flash.setOnClickListener {
                 turnFlash()
@@ -201,7 +206,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
         viewBinding.run {
             intent.extras?.let { extras ->
                 val drawMode = extras.getInt(KEY_DRAWING_MODE)
-                val assetType = extras.getInt(KEY_ASSET_TYPE)
+                assetType = extras.getInt(KEY_ASSET_TYPE)
 
                 when(drawMode){
                     SKETCH_DRAWING_MODE -> {
