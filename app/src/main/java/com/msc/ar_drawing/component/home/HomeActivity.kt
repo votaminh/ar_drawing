@@ -87,6 +87,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     .load(Uri.parse("file:///android_asset/$it"))
                     .into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                            DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
                             DataStatic.selectBitmap = resource
                             PreviewActivity.start(this@HomeActivity)
                         }
