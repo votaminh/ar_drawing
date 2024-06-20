@@ -157,7 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/size20">
+        android:layout_marginTop="@dimen/size40">
 
         <TextView
             android:layout_width="wrap_content"
@@ -185,6 +185,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginVertical="@dimen/size5"
+        android:layout_marginVertical="@dimen/size10"
         />
 </LinearLayout>
