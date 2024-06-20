@@ -190,13 +190,15 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
         viewBinding.reColor.run {
             layoutManager = LinearLayoutManager(this@DrawingActivity, RecyclerView.HORIZONTAL, false)
             adapter = colorAdapter
-            colorAdapter.onClick = {
+            colorAdapter.onClickWithPosition = { it, i ->
                 if(it == -1){
                     showPickerColor{
                         viewBinding.maskBgTrace.setBackgroundColor(it)
+                        colorAdapter.setSelectItem(i)
                     }
                 }else{
                     viewBinding.maskBgTrace.setBackgroundColor(it)
+                    colorAdapter.setSelectItem(i)
                 }
             }
         }
