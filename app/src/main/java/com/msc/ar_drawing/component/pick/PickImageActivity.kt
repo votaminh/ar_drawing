@@ -8,13 +8,18 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.MediaStore
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.msc.ar_drawing.BuildConfig
 import com.msc.ar_drawing.R
+import com.msc.ar_drawing.admob.BannerAdmob
+import com.msc.ar_drawing.admob.CollapsiblePositionType
+import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.component.home.ImageDrawAdapter
@@ -24,6 +29,7 @@ import com.msc.ar_drawing.databinding.ActivityPickImageBinding
 import com.msc.ar_drawing.databinding.LayoutToolbarBinding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.PermissionUtils
+import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -71,6 +77,16 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
 
         buildReImage()
         viewModel.getListImage()
+        showBanner()
+    }
+
+    private fun showBanner() {
+        if(SpManager.getInstance(this@PickImageActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+            bannerAdmob.showBanner(this@PickImageActivity, BuildConfig.banner_all, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun buildReImage() {

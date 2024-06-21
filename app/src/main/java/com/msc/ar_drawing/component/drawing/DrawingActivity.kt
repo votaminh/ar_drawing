@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
 import android.view.Surface.ROTATION_0
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,7 +28,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.slider.Slider
+import com.msc.ar_drawing.BuildConfig
 import com.msc.ar_drawing.R
+import com.msc.ar_drawing.admob.BannerAdmob
+import com.msc.ar_drawing.admob.CollapsiblePositionType
+import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.text.AddTextViewModel
 import com.msc.ar_drawing.component.text.ColorAdapter
@@ -35,6 +40,7 @@ import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.AppEx.replaceWhiteToTransparentBitmap
 import com.msc.ar_drawing.utils.DialogEx.showPickerColor
 import com.msc.ar_drawing.utils.PermissionUtils
+import com.msc.ar_drawing.utils.SpManager
 import com.msc.ar_drawing.utils.ViewEx.gone
 import com.msc.ar_drawing.utils.ViewEx.invisible
 import com.msc.ar_drawing.utils.ViewEx.textColorRes
@@ -173,6 +179,17 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
         buildReColor()
         viewModel.getColors()
+
+        showBanner()
+    }
+
+    private fun showBanner() {
+        if(SpManager.getInstance(this@DrawingActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+            bannerAdmob.showBanner(this@DrawingActivity, BuildConfig.banner_all, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun lockSticker() {

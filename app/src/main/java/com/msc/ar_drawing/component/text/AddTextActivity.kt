@@ -3,16 +3,22 @@ package com.msc.ar_drawing.component.text
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Typeface
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.msc.ar_drawing.BuildConfig
 import com.msc.ar_drawing.R
+import com.msc.ar_drawing.admob.BannerAdmob
+import com.msc.ar_drawing.admob.CollapsiblePositionType
+import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.databinding.ActivityAddTextBinding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showDialogApplyText
 import com.msc.ar_drawing.utils.DialogEx.showPickerColor
+import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,6 +68,8 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
 
         buildReColor()
         viewModel.getColors()
+
+        showBanner()
     }
 
     private fun openDraw() {
@@ -98,6 +106,16 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
                     colorAdapter.setSelectItem(i)
                 }
             }
+        }
+    }
+
+
+    private fun showBanner() {
+        if(SpManager.getInstance(this@AddTextActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+            bannerAdmob.showBanner(this@AddTextActivity, BuildConfig.banner_all, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
         }
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.msc.ar_drawing.BuildConfig
+import com.msc.ar_drawing.admob.BannerAdmob
 import com.msc.ar_drawing.admob.BaseAdmob
+import com.msc.ar_drawing.admob.CollapsiblePositionType
 import com.msc.ar_drawing.admob.InterAdmob
 import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
@@ -23,6 +26,7 @@ import com.msc.ar_drawing.component.setting.SettingActivity
 import com.msc.ar_drawing.component.text.AddTextActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
 import com.msc.ar_drawing.utils.DataStatic
+import com.msc.ar_drawing.utils.DialogEx.showDialogExit
 import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -98,6 +102,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         buildReImage()
         viewModel.getListImage()
+
+        showBanner()
+    }
+
+    private fun showBanner() {
+        if(spManager.getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_all, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun showInterAction(nextAction :(() -> Unit)? = null) {
@@ -153,6 +168,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
         viewModel.imagesPathLive.observe(this){
             imageDrawAdapter.setData(it.shuffled().subList(0, 9))
+        }
+    }
+
+    override fun onBackPressed() {
+        showDialogExit(this) {
+            finish()
         }
     }
 }
