@@ -45,16 +45,12 @@ android {
 
             buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/2862244041\""
             buildConfigField "String", "inter_home", "\"ca-app-pub-7121787699260095/5194847624\""
-            buildConfigField "String", "inter_category", "\"ca-app-pub-7121787699260095/5442259636\""
 
             buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/2068326109\""
-            buildConfigField "String", "native_language_2floor", "\"ca-app-pub-7121787699260095/2753801943\""
             buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/7379740411\""
             buildConfigField "String", "native_exit", "\"ca-app-pub-7121787699260095/3440495404\""
             buildConfigField "String", "native_permission", "\"ca-app-pub-7121787699260095/8709467093\""
-            buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/3684939348\""
 
-            buildConfigField "String", "banner_collap", "\"ca-app-pub-7121787699260095/7215791134\""
             buildConfigField "String", "banner_splash", "\"ca-app-pub-7121787699260095/2719062794\""
         }
 
@@ -65,16 +61,12 @@ android {
 
             buildConfigField "String", "inter_splash", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "inter_home", "\"ca-app-pub-3940256099942544/1033173712\""
-            buildConfigField "String", "inter_category", "\"ca-app-pub-3940256099942544/1033173712\""
 
             buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "native_language_2floor", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_onboarding", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_exit", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "native_permission", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "native_full_screen", "\"ca-app-pub-3940256099942544/2247696110\""
 
-            buildConfigField "String", "banner_collap", "\"ca-app-pub-3940256099942544/2014213617\""
             buildConfigField "String", "banner_splash", "\"ca-app-pub-3940256099942544/2014213617\""
         }
     }

@@ -179,13 +179,13 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
             }
         }
 
-        NativeAdmobUtils.onboardFullNativeAdmob?.run {
-            nativeAdLive.observe(this@OnBoardingActivity){
-                if(available()){
-                    addAdsToOnboard(this)
-                }
-            }
-        }
+//        NativeAdmobUtils.onboardFullNativeAdmob?.run {
+//            nativeAdLive.observe(this@OnBoardingActivity){
+//                if(available()){
+//                    addAdsToOnboard(this)
+//                }
+//            }
+//        }
     }
 
     private fun addAdsToOnboard(it: NativeAdmob?) {
