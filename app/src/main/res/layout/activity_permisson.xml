@@ -20,6 +20,7 @@
             android:layout_centerVertical="true"
             app:tint="@color/app_main"
             android:padding="@dimen/size6"
+            android:visibility="gone"
             />
 
         <TextView
