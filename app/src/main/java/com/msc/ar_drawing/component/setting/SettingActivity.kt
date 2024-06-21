@@ -24,6 +24,10 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
         super.initViews()
 
         viewBinding.run {
+            imvBack.setOnClickListener {
+                finish()
+            }
+
             language.setOnClickListener {
                 LanguageActivity.start(this@SettingActivity, false)
             }
