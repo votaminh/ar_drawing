@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "899010413058",
-    "project_id": "animal-sounds-and-ringtones",
-    "storage_bucket": "animal-sounds-and-ringtones.appspot.com"
+    "project_number": "998169427383",
+    "project_id": "ar-drawing-paint-sketch-ffc08",
+    "storage_bucket": "ar-drawing-paint-sketch-ffc08.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:899010413058:android:a49e53784c1ba15ab79d1b",
+        "mobilesdk_app_id": "1:998169427383:android:1a2a8de7659cffec15bc32",
         "android_client_info": {
-          "package_name": "com.vinalinux.animalsounds.animalringtone"
+          "package_name": "com.trn.drawing.pencil.at.draw.paint.trace.sketch.ar"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAK0A9ZlWTX6immemjM0x2LBlO9cd29ggw"
+          "current_key": "AIzaSyBl4gqEYajc92x81DhHRj1j0R7EAtSxiQA"
         }
       ],
       "services": {

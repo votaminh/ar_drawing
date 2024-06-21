@@ -12,7 +12,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.vinalinux.animalsounds.animalringtone"
+        applicationId "com.trn.drawing.pencil.at.draw.paint.trace.sketch.ar"
         minSdk 24
         targetSdk 34
         versionCode 2
