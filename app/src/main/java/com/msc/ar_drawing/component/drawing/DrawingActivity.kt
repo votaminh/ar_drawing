@@ -2,16 +2,14 @@ package com.msc.ar_drawing.component.drawing
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Typeface
-import android.hardware.camera2.CameraCharacteristics
-import android.hardware.camera2.CameraManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
+import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
 import android.view.Surface.ROTATION_0
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -24,6 +22,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -34,7 +33,6 @@ import com.msc.ar_drawing.component.text.AddTextViewModel
 import com.msc.ar_drawing.component.text.ColorAdapter
 import com.msc.ar_drawing.databinding.ActivityMain1Binding
 import com.msc.ar_drawing.utils.AppEx.replaceWhiteToTransparentBitmap
-import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showPickerColor
 import com.msc.ar_drawing.utils.PermissionUtils
 import com.msc.ar_drawing.utils.ViewEx.gone
@@ -50,6 +48,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 
+
 @AndroidEntryPoint
 class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
@@ -64,6 +63,11 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private var isFlash = false
 
     private val viewModel : AddTextViewModel by viewModels()
+
+    var preTouchX = 0f
+    var preTouchY = 0f
+
+    private var mScaleDetector: ScaleGestureDetector? = null
 
     companion object {
 
@@ -156,12 +160,83 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
             }
 
             sliderOpacity.addOnChangeListener(Slider.OnChangeListener { _, value, _ -> onChangeOpacity(value); })
+
+            touchStickerEvent()
         }
 
         checkDataIntent()
 
         buildReColor()
         viewModel.getColors()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun touchStickerEvent() {
+
+        mScaleDetector = ScaleGestureDetector(this@DrawingActivity, object : ScaleGestureDetector.OnScaleGestureListener{
+            private var scaleFactor = 1.0f
+
+            override fun onScale(detector: ScaleGestureDetector): Boolean {
+                scaleFactor *= detector.scaleFactor
+
+                // Ensure the scale factor remains within a reasonable range
+                scaleFactor = maxOf(0.1f, minOf(scaleFactor, 5.0f))
+
+                viewBinding.run {
+                    if(imvSticker.isVisible){
+                        imvSticker.scaleX = scaleFactor
+                        imvSticker.scaleY = scaleFactor
+                    }else {
+                        tvSticker.scaleX = scaleFactor
+                        tvSticker.scaleY = scaleFactor
+                    }
+                }
+                return true
+            }
+
+            override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+                return true
+            }
+
+            override fun onScaleEnd(detector: ScaleGestureDetector) {
+                // Optional: You can handle any cleanup or final adjustments here
+            }
+
+        })
+
+        viewBinding.touchListener.setOnTouchListener { view, motionEvent ->
+
+            mScaleDetector?.onTouchEvent(motionEvent)
+
+            when(motionEvent.action){
+                MotionEvent.ACTION_DOWN -> {
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    if(preTouchX == 0f){
+                        preTouchX = motionEvent.x
+                        preTouchY = motionEvent.y
+                    }
+                    viewBinding.run {
+                        if(imvSticker.isVisible){
+                            imvSticker.animate().translationXBy(motionEvent.x - preTouchX).setDuration(0).start()
+                            imvSticker.animate().translationYBy(motionEvent.y - preTouchY).setDuration(0).start()
+                        }else {
+                            tvSticker.animate().translationXBy(motionEvent.x - preTouchX).setDuration(0).start()
+                            tvSticker.animate().translationYBy(motionEvent.y - preTouchY).setDuration(0).start()
+                        }
+                    }
+                    preTouchX = motionEvent.x
+                    preTouchY = motionEvent.y
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    preTouchX = 0f
+                    preTouchY = 0f
+                }
+            }
+
+            true
+        }
     }
 
     private fun turnFlash() {
