@@ -41,7 +41,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
             }
 
             privacy.setOnClickListener {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://google.com")))
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/policyardrawing/trang-ch%E1%BB%A7")))
             }
         }
 
