@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
+
     <androidx.camera.view.PreviewView
         android:id="@+id/preview"
         android:layout_width="match_parent"
@@ -33,6 +34,47 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         />
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar_language"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size50"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="@dimen/size40"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            app:tint="@color/white"
+            android:padding="@dimen/size6"
+            />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:text="@string/txt_sketch"
+            style="@style/TextView_Headline1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/size16"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/dosis_semibold"
+            />
+
+        <ImageView
+            android:id="@+id/imvLock"
+            android:layout_width="@dimen/size40"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_lock"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            app:tint="@color/white"
+            android:padding="@dimen/size6"
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

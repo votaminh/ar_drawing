@@ -111,6 +111,11 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     override fun initViews() {
 
         viewBinding.run {
+
+            imvBack.setOnClickListener {
+                finish()
+            }
+
             opaciy.setOnClickListener {
                 showMenu(imvOpacity, tvOpacity, menuOpacity)
             }
@@ -216,6 +221,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
                 when(drawMode){
                     SKETCH_DRAWING_MODE -> {
+                        tvTitle.setText(R.string.txt_sketch)
                         line.gone()
                         flash.visible()
                         maskBgTrace.gone()
@@ -228,6 +234,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                     }
 
                     TRACE_DRAWING_MODE -> {
+                        tvTitle.setText(R.string.txt_trace)
                         line.visible()
                         flash.gone()
                         maskBgTrace.visible()
