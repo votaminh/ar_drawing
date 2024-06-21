@@ -27,6 +27,7 @@ import com.msc.ar_drawing.component.text.AddTextActivity
 import com.msc.ar_drawing.databinding.ActivityHomeBinding
 import com.msc.ar_drawing.utils.DataStatic
 import com.msc.ar_drawing.utils.DialogEx.showDialogExit
+import com.msc.ar_drawing.utils.NativeAdmobUtils
 import com.msc.ar_drawing.utils.SpManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -104,6 +105,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         viewModel.getListImage()
 
         showBanner()
+
+        if(spManager.getBoolean(NameRemoteAdmob.NATIVE_EXIT, true)){
+            NativeAdmobUtils.loadNativeExit()
+        }
     }
 
     private fun showBanner() {
