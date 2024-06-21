@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.msc.ar_drawing.BuildConfig
+import com.msc.ar_drawing.admob.BaseAdmob
+import com.msc.ar_drawing.admob.InterAdmob
+import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
 import com.msc.ar_drawing.component.drawing.DrawingActivity
 import com.msc.ar_drawing.component.pick.PickImageActivity
@@ -33,6 +37,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     @Inject
     lateinit var spManager : SpManager
 
+    var interAdmob : InterAdmob? = null
 
     companion object {
         const val REQUEST_PICKER_CONTACT = 211
@@ -48,35 +53,71 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun initViews() {
         super.initViews()
 
+        interAdmob = InterAdmob(this@HomeActivity, BuildConfig.inter_home)
+
+        if(spManager.getBoolean(NameRemoteAdmob.INTER_HOME, true)){
+            interAdmob?.load(null)
+        }
+
         SpManager.getInstance(this@HomeActivity).saveOnBoarding()
 
         viewBinding.run {
             sketch.setOnClickListener {
-                DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
-                PickImageActivity.start(this@HomeActivity)
+                showInterAction{
+                    DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
+                    PickImageActivity.start(this@HomeActivity)
+                }
             }
 
             trace.setOnClickListener {
-                DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
-                PickImageActivity.start(this@HomeActivity)
+                showInterAction {
+                    DataStatic.selectDrawMode = DrawingActivity.TRACE_DRAWING_MODE
+                    PickImageActivity.start(this@HomeActivity)
+                }
             }
 
             text.setOnClickListener {
-                AddTextActivity.start(this@HomeActivity)
+                showInterAction {
+                    AddTextActivity.start(this@HomeActivity)
+                }
             }
 
             showAll.setOnClickListener{
-                DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
-                PickImageActivity.start(this@HomeActivity)
+                showInterAction{
+                    DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
+                    PickImageActivity.start(this@HomeActivity)
+                }
             }
 
             setting.setOnClickListener{
-                SettingActivity.start(this@HomeActivity)
+                showInterAction {
+                    SettingActivity.start(this@HomeActivity)
+                }
             }
         }
 
         buildReImage()
         viewModel.getListImage()
+    }
+
+    private fun showInterAction(nextAction :(() -> Unit)? = null) {
+        if(spManager.getBoolean(NameRemoteAdmob.INTER_HOME, true) && interAdmob?.available() == true){
+            interAdmob?.showInterstitial(this@HomeActivity, object : BaseAdmob.OnAdmobShowListener{
+                override fun onShow() {
+                    interAdmob?.load(null)
+                    nextAction?.invoke()
+                }
+
+                override fun onError(e: String?) {
+                    interAdmob?.load(null)
+                    nextAction?.invoke()
+                }
+
+            })
+        }else{
+            interAdmob?.load(null)
+            nextAction?.invoke()
+        }
     }
 
     private fun buildReImage() {
@@ -89,9 +130,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                     .load(Uri.parse("file:///android_asset/$it"))
                     .into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                            DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
-                            DataStatic.selectBitmap = resource
-                            PreviewActivity.start(this@HomeActivity)
+                            showInterAction {
+                                DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE
+                                DataStatic.selectBitmap = resource
+                                PreviewActivity.start(this@HomeActivity)
+                            }
                         }
 
                         override fun onLoadCleared(placeholder: Drawable?) {
