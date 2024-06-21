@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.msc.ar_drawing.admob.NameRemoteAdmob
 import com.msc.ar_drawing.base.activity.BaseActivity
+import com.msc.ar_drawing.component.home.HomeActivity
 import com.msc.ar_drawing.databinding.ActivityPermissonBinding
 import com.msc.ar_drawing.utils.NativeAdmobUtils
 import com.msc.ar_drawing.utils.PermissionUtils
@@ -20,8 +21,6 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
     lateinit var spManager: SpManager
 
     private val stateWriteSetting = MutableLiveData(false)
-    private val stateNotification = MutableLiveData(false)
-    private val stateMedia = MutableLiveData(false)
 
     companion object {
         fun start(activity : Activity){
@@ -38,17 +37,11 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
 
         viewBinding.run {
             llWriteSetting.setOnClickListener {
-                PermissionUtils.requestWriteSetting(this@PermissionActivity, 342)
-            }
-            llNotification.setOnClickListener {
-                PermissionUtils.requestNotificationPermission(this@PermissionActivity, 533)
-            }
-            llReadMedia.setOnClickListener {
-                PermissionUtils.requestStorage(this@PermissionActivity, 522)
+                PermissionUtils.requestCamera(this@PermissionActivity, 342)
             }
 
-            tvNext.setOnClickListener {
-//                HomeActivity.start(this@PermissionActivity)
+            ivDone.setOnClickListener {
+                HomeActivity.start(this@PermissionActivity)
                 finish()
             }
         }
@@ -57,24 +50,14 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
     }
 
     private fun checkState() {
-        stateMedia.postValue(PermissionUtils.storageGrant(this@PermissionActivity))
-        stateNotification.postValue(PermissionUtils.checkNotificationPermission(this@PermissionActivity))
-        stateWriteSetting.postValue(PermissionUtils.writeSettingGrant(this@PermissionActivity))
+        stateWriteSetting.postValue(PermissionUtils.cameraGrant(this@PermissionActivity))
     }
 
     override fun initObserver() {
         super.initObserver()
 
-        stateMedia.observe(this){
-            viewBinding.llReadMedia.visibility = if(it) View.GONE else View.VISIBLE
-            checkShowNextBtn()
-        }
         stateWriteSetting.observe(this){
-            viewBinding.llWriteSetting.visibility = if(it) View.GONE else View.VISIBLE
-            checkShowNextBtn()
-        }
-        stateNotification.observe(this){
-            viewBinding.llNotification.visibility = if(it) View.GONE else View.VISIBLE
+            viewBinding.sw.isChecked = it
             checkShowNextBtn()
         }
 
@@ -94,10 +77,10 @@ class PermissionActivity : BaseActivity<ActivityPermissonBinding>() {
     }
 
     private fun checkShowNextBtn() {
-        if(stateMedia.value == true && stateNotification.value == true && stateWriteSetting.value == true){
-            viewBinding.tvNext.visibility = View.VISIBLE
+        if(stateWriteSetting.value == true){
+            viewBinding.ivDone.visibility = View.VISIBLE
         }else{
-            viewBinding.tvNext.visibility = View.INVISIBLE
+            viewBinding.ivDone.visibility = View.INVISIBLE
         }
     }
 

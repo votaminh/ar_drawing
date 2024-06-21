@@ -64,8 +64,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
                 if (currentPosition < onBoardingAdapter.getListData().size - 1) {
                     vpOnBoarding.setCurrentItem(currentPosition + 1, true)
                 } else {
-                    SpManager.getInstance(this@OnBoardingActivity).saveOnBoarding()
-                    HomeActivity.start(this@OnBoardingActivity)
+                    PermissionActivity.start(this@OnBoardingActivity)
                     finish()
                 }
             }

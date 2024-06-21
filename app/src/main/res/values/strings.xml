@@ -63,4 +63,6 @@
     <string name="txt_privacy_policy">Privacy policy</string>
     <string name="txt_you_have_type_text">You must enter text</string>
     <string name="txt_not_support_in_text">The function does not support text format</string>
+    <string name="txt_camera_permission">Camera permission</string>
+    <string name="txt_permisison">Permission</string>
 </resources>

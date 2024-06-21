@@ -48,6 +48,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun initViews() {
         super.initViews()
 
+        SpManager.getInstance(this@HomeActivity).saveOnBoarding()
+
         viewBinding.run {
             sketch.setOnClickListener {
                 DataStatic.selectDrawMode = DrawingActivity.SKETCH_DRAWING_MODE

@@ -2,13 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/app_bg"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar" />
+    <RelativeLayout
+        android:id="@+id/toolbar_language"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size50"
+        android:minHeight="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="@dimen/size40"
+            android:layout_height="@dimen/size40"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            app:tint="@color/app_main"
+            android:padding="@dimen/size6"
+            />
+
+        <TextView
+            android:text="@string/txt_permisison"
+            style="@style/TextView_Headline1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/size16"
+            android:textColor="@color/app_main"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/dosis_semibold"
+            />
+
+        <TextView
+            android:id="@+id/ivDone"
+            android:text="@string/txt_next"
+            style="@style/TextView_Headline2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:paddingVertical="@dimen/size5"
+            android:paddingHorizontal="@dimen/size15"
+            android:layout_marginRight="@dimen/size10"
+            android:background="@drawable/bg_next_language_btn"
+            />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_setting_permission"
+                android:src="@drawable/bg_permission"
                 android:layout_marginHorizontal="@dimen/size100"
                 />
 
@@ -37,7 +73,8 @@
                 style="@style/TextView_Body1"
                 android:text="@string/txt_premission_request_message"
                 android:layout_marginHorizontal="@dimen/size20"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 />
 
             <LinearLayout
@@ -45,86 +82,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/size30"
-                android:layout_marginTop="@dimen/size10"
+                android:layout_marginTop="@dimen/size20"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_main_light_round_10"
+                android:layout_marginHorizontal="@dimen/size16"
+                android:paddingHorizontal="@dimen/size10"
+                android:paddingVertical="@dimen/size2"
                 >
+
+                <ImageView
+                    android:layout_width="@dimen/size20"
+                    android:layout_height="@dimen/size20"
+                    android:src="@drawable/ic_camear_permisison"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_write_setting_permission"
-                    style="@style/TextView_Headline2"
+                    android:text="@string/txt_camera_permission"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size14"
+                    android:layout_marginHorizontal="@dimen/size10"
                     />
 
                 <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="false"
+                    app:track="@drawable/track_sw"
+                    app:thumbTint="@color/white"
                     />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llReadMedia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/size30"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_read_media_permisison"
-                    style="@style/TextView_Headline2"
-                    />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llNotification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/size30"
-                >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/txt_receiver_notification"
-                    style="@style/TextView_Headline2"
-                    />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_next"
-                android:background="@drawable/bg_green_round20"
-                android:textColor="@color/white"
-                android:paddingHorizontal="@dimen/size30"
-                android:paddingTop="@dimen/size5"
-                android:paddingBottom="@dimen/size6"
-                android:textSize="@dimen/size16"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/size20"
-                />
 
         </LinearLayout>
     </ScrollView>
