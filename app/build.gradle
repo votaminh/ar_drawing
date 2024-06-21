@@ -39,19 +39,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            manifestPlaceholders = [ad_app_id: "ca-app-pub-7121787699260095~7431711303"]
+            manifestPlaceholders = [ad_app_id: "ca-app-pub-7121787699260095~2961806618"]
 
-            buildConfigField "String", "open_resume", "\"ca-app-pub-7121787699260095/9820488341\""
+            buildConfigField "String", "open_resume", "\"ca-app-pub-7121787699260095/4301156058\""
 
-            buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/2862244041\""
-            buildConfigField "String", "inter_home", "\"ca-app-pub-7121787699260095/5194847624\""
+            buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/6413966465\""
+            buildConfigField "String", "inter_home", "\"ca-app-pub-7121787699260095/6600016336\""
 
-            buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/2068326109\""
-            buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/7379740411\""
-            buildConfigField "String", "native_exit", "\"ca-app-pub-7121787699260095/3440495404\""
-            buildConfigField "String", "native_permission", "\"ca-app-pub-7121787699260095/8709467093\""
+            buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/1416790654\""
+            buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/5164463976\""
+            buildConfigField "String", "native_exit", "\"ca-app-pub-7121787699260095/9034607983\""
+            buildConfigField "String", "native_permission", "\"ca-app-pub-7121787699260095/2081831608\""
 
-            buildConfigField "String", "banner_splash", "\"ca-app-pub-7121787699260095/2719062794\""
+            buildConfigField "String", "banner_splash", "\"ca-app-pub-7121787699260095/5422666039\""
         }
 
         debug {
