@@ -52,6 +52,7 @@ import java.util.concurrent.Executors
 @AndroidEntryPoint
 class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
+    private var isLock = false
     private var assetType: Int = BITMAP_ASSET
     private val cameraExecutor = Executors.newSingleThreadExecutor()
     private var camera: Camera? = null
@@ -116,6 +117,10 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
         viewBinding.run {
 
+            imvLock.setOnClickListener {
+                lockSticker()
+            }
+
             imvBack.setOnClickListener {
                 finish()
             }
@@ -170,6 +175,16 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
         viewModel.getColors()
     }
 
+    private fun lockSticker() {
+        if(isLock){
+            isLock = false
+            viewBinding.imvLock.tintColorRes(R.color.white)
+        }else{
+            isLock = true
+            viewBinding.imvLock.tintColorRes(R.color.app_main)
+        }
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun touchStickerEvent() {
 
@@ -206,6 +221,10 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
         viewBinding.touchListener.setOnTouchListener { view, motionEvent ->
 
+            if(isLock){
+                return@setOnTouchListener false
+            }
+
             mScaleDetector?.onTouchEvent(motionEvent)
 
             when(motionEvent.action){
@@ -235,7 +254,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 }
             }
 
-            true
+            return@setOnTouchListener true
         }
     }
 
