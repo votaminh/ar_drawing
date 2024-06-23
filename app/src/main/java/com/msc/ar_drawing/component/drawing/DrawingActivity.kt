@@ -68,6 +68,7 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
     private var isFlip = false
     private var isFlash = false
+    private var scaleFactor = 1.0f
 
     private val viewModel : AddTextViewModel by viewModels()
 
@@ -206,8 +207,6 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     private fun touchStickerEvent() {
 
         mScaleDetector = ScaleGestureDetector(this@DrawingActivity, object : ScaleGestureDetector.OnScaleGestureListener{
-            private var scaleFactor = 1.0f
-
             override fun onScale(detector: ScaleGestureDetector): Boolean {
                 scaleFactor *= detector.scaleFactor
 
@@ -215,12 +214,13 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
                 scaleFactor = maxOf(0.1f, minOf(scaleFactor, 5.0f))
 
                 viewBinding.run {
+                    // Apply the scaling factor, considering if the image is flipped
                     if(imvSticker.isVisible){
-                        imvSticker.scaleX = scaleFactor
-                        imvSticker.scaleY = scaleFactor
+                        viewBinding.imvSticker.scaleX = if (isFlip) -scaleFactor else scaleFactor
+                        viewBinding.imvSticker.scaleY = scaleFactor
                     }else {
-                        tvSticker.scaleX = scaleFactor
-                        tvSticker.scaleY = scaleFactor
+                        viewBinding.tvSticker.scaleX = if (isFlip) -scaleFactor else scaleFactor
+                        viewBinding.tvSticker.scaleY = scaleFactor
                     }
                 }
                 return true
@@ -392,18 +392,20 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
 
     private fun flipImage() {
         viewBinding.run {
+
             isFlip = !isFlip
+            // Apply the current scale factor with the flip adjustment
+
             if(isFlip){
                 imvFlip.tintColorRes(R.color.app_main)
                 tvFlip.textColorRes(R.color.app_main)
-                imvSticker.animate().scaleX(-1f).setDuration(0).start()
-                tvSticker.animate().scaleX(-1f).setDuration(0).start()
             }else{
                 imvFlip.tintColorRes(R.color.gray)
                 tvFlip.textColorRes(R.color.gray)
-                imvSticker.animate().scaleX(1f).setDuration(0).start()
-                tvSticker.animate().scaleX(1f).setDuration(0).start()
             }
+
+            imvSticker.scaleX = if (isFlip) -scaleFactor else scaleFactor
+            tvSticker.scaleX = if (isFlip) -scaleFactor else scaleFactor
 
         }
     }
