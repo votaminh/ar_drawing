@@ -28,6 +28,7 @@ object DialogEx {
             builder.show()
 
             NativeAdmobUtils.nativeExitLiveData?.run {
+                reLoad()
                 nativeAdLive?.observe(lifecycle){
                     if(available() && SpManager.getInstance(activity).getBoolean(NameRemoteAdmob.NATIVE_EXIT, true)){
                         binding.flAdplaceholder.visibility = View.VISIBLE
