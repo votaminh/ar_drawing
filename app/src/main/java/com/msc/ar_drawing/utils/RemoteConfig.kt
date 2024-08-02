@@ -79,6 +79,7 @@ class RemoteConfig {
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_ALL)
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLLAPSE_HOME)
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLLAPSE_PICK_IMAGE)
+            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLLAPSE_PREVIEW)
 
             configNativeAdmobUI(remoteConfig)
         }

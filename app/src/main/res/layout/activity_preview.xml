@@ -29,35 +29,17 @@
             android:textColor="@color/app_main"
             />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            app:cardBackgroundColor="@color/app_main"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/size10"
-            app:cardCornerRadius="@dimen/size15"
-            >
-            <TextView
-                android:id="@+id/imvNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_next"
-                android:textColor="@color/white"
-                android:paddingHorizontal="@dimen/size20"
-                android:paddingVertical="@dimen/size5"
-                android:textSize="@dimen/size14"
-                />
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/size200"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/size10"
         android:background="@drawable/bg_stroke_main_round20"
         android:padding="@dimen/size2"
+        android:layout_marginHorizontal="@dimen/size20"
         >
 
         <androidx.cardview.widget.CardView
@@ -78,4 +60,43 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        app:cardBackgroundColor="@color/app_main"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="@dimen/size15"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/size20"
+        android:layout_marginVertical="@dimen/size30"
+        >
+        <TextView
+            android:id="@+id/imvNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_next"
+            android:textColor="@color/white"
+            android:paddingHorizontal="@dimen/size20"
+            android:paddingVertical="@dimen/size9"
+            android:textSize="@dimen/size16"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/size2"
+        android:background="@color/gray"
+        >
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adSize="BANNER"
+            app:adUnitId="4353" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>
