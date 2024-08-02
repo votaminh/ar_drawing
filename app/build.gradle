@@ -46,18 +46,18 @@ android {
             buildConfigField "String", "inter_splash", "\"ca-app-pub-7121787699260095/6413966465\""
             buildConfigField "String", "inter_home", "\"ca-app-pub-7121787699260095/6600016336\""
 
-            buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/1416790654\""
-            buildConfigField "String", "native_lanugage_s2", "\"ca-app-pub-7121787699260095/1416790654\""
+            buildConfigField "String", "native_lanugage_s2_all_price", "\"ca-app-pub-7121787699260095/5067966871\""
+            buildConfigField "String", "native_lanugage_s2", "\"ca-app-pub-7121787699260095/4084259518\""
             buildConfigField "String", "native_onboarding", "\"ca-app-pub-7121787699260095/5164463976\""
             buildConfigField "String", "native_exit", "\"ca-app-pub-7121787699260095/9034607983\""
             buildConfigField "String", "native_permission", "\"ca-app-pub-7121787699260095/2081831608\""
-            buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/2081831608\""
+            buildConfigField "String", "native_full_screen", "\"ca-app-pub-7121787699260095/8904770531\""
 
             buildConfigField "String", "banner_splash", "\"ca-app-pub-7121787699260095/5422666039\""
             buildConfigField "String", "banner_collap_home", "\"ca-app-pub-7121787699260095/8455668262\""
-            buildConfigField "String", "banner_collapse_pick_image", "\"ca-app-pub-7121787699260095/8455668262\""
-            buildConfigField "String", "banner_collapse_preview", "\"ca-app-pub-7121787699260095/8455668262\""
-            buildConfigField "String", "banner_collapse_draw_text", "\"ca-app-pub-7121787699260095/8455668262\""
+            buildConfigField "String", "banner_collapse_pick_image", "\"ca-app-pub-7121787699260095/6710422857\""
+            buildConfigField "String", "banner_collapse_preview", "\"ca-app-pub-7121787699260095/9007211884\""
+            buildConfigField "String", "banner_collapse_draw_text", "\"ca-app-pub-7121787699260095/1217852203\""
         }
 
         debug {
