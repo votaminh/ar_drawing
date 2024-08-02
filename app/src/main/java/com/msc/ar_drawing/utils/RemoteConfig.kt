@@ -10,6 +10,8 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.msc.ar_drawing.App
 import com.msc.ar_drawing.admob.NameRemoteAdmob
+import com.msc.ar_drawing.admob.NameRemoteUINative
+import org.json.JSONObject
 
 class RemoteConfig {
 
@@ -75,7 +77,27 @@ class RemoteConfig {
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_ALL)
+
+            configNativeAdmobUI(remoteConfig)
         }
+    }
+
+    private fun configNativeAdmobUI(remoteConfig: FirebaseRemoteConfig) {
+        val configString = remoteConfig.getString("ui_native_admob")
+        if(configString.isNotEmpty()){
+            val configJson = JSONObject(configString)
+            putStringToSP(configJson, NameRemoteUINative.BG_CTA)
+            putStringToSP(configJson, NameRemoteUINative.TEXT_CTA)
+            putStringToSP(configJson, NameRemoteUINative.BG_AD)
+            putStringToSP(configJson, NameRemoteUINative.TEXT_AD)
+        }
+    }
+
+    private fun putStringToSP(configJson: JSONObject, name: String) {
+        val spManager = App.instance?.applicationContext?.let { SpManager.getInstance(it) }
+        val values = configJson.getString(name)
+        spManager?.putString(name, values)
+        Log.i(TAG, "$name : $values")
     }
 
     private fun putBooleanToSP(remoteConfig: FirebaseRemoteConfig, name: String) {

@@ -1,6 +1,7 @@
 package com.msc.ar_drawing.admob;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -24,6 +26,7 @@ import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.msc.ar_drawing.BuildConfig;
 import com.msc.ar_drawing.R;
+import com.msc.ar_drawing.utils.SpManager;
 
 public class NativeAdmob extends BaseAdmob {
     private static final String TAG = "nativeAdmob";
@@ -59,6 +62,20 @@ public class NativeAdmob extends BaseAdmob {
             enableReload(true);
 
             NativeAdView adView = parent.findViewById(R.id.native_ad_view);
+
+            String bgCTA = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.BG_CTA, "#fff");
+            String textCTA = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.TEXT_CTA, "#fff");
+            String bgAD = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.BG_AD, "#fff");
+            String textAd = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.TEXT_AD, "#fff");
+
+            TextView tvCTA = parent.findViewById(R.id.ad_call_to_action);
+            CardView cta = (CardView) tvCTA.getParent();
+            TextView tvAd = parent.findViewById(R.id.tvAd);
+
+            cta.setCardBackgroundColor(Color.parseColor(bgCTA));
+            tvCTA.setTextColor(Color.parseColor(textCTA));
+            tvAd.setBackgroundColor(Color.parseColor(bgAD));
+            tvAd.setTextColor(Color.parseColor(textAd));
 
             parent.hideShimmer();
             parent.stopShimmer();
