@@ -11,6 +11,9 @@ class NativeAdmobUtils {
         @SuppressLint("StaticFieldLeak")
         var languageNativeAdmobDefault: NativeAdmob? = null
         @SuppressLint("StaticFieldLeak")
+        var languageNativeAdmobS2: NativeAdmob? = null
+
+        @SuppressLint("StaticFieldLeak")
         var onboardNativeAdmob1: NativeAdmob? = null
         @SuppressLint("StaticFieldLeak")
         var onboardNativeAdmob2: NativeAdmob? = null
@@ -33,6 +36,11 @@ class NativeAdmobUtils {
                 )
                 languageNativeAdmobDefault?.load(null)
 
+                languageNativeAdmobS2 = NativeAdmob(
+                    context,
+                    BuildConfig.native_lanugage_s2
+                )
+                languageNativeAdmobS2?.load(null)
             }
         }
         fun loadNativePermission() {

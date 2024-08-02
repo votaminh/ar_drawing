@@ -29,8 +29,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
     @Inject
     lateinit var spManager: SpManager
 
-    var canShowNative = true
-
     override fun provideViewBinding(): ActivityLanguageBinding {
         return ActivityLanguageBinding.inflate(layoutInflater)
     }
@@ -52,6 +50,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         viewBinding.rclLanguage.adapter = languageAdapter
         languageAdapter.onClick = {
             languageAdapter.selectLanguage(it.languageCode)
+            switchAds()
         }
         viewBinding.ivDone.setOnClickListener {
             languageAdapter.selectedLanguage()?.let { languageModel ->
@@ -84,6 +83,14 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         }
     }
 
+    private fun switchAds() {
+        NativeAdmobUtils.languageNativeAdmobS2?.run {
+            nativeAdLive?.observe(this@LanguageActivity){
+                checkShowNative(this)
+            }
+        }
+    }
+
     override fun initObserver() {
         viewModel.listLanguage.observe(this) {
             languageAdapter.setData(ArrayList(it))
@@ -101,17 +108,10 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                 checkShowNative(this)
             }
         }
-
-//        NativeAdmobUtils.languageNativeAdmob2Floor?.run {
-//            nativeAdLive?.observe(this@LanguageActivity){
-//                checkShowNative(this)
-//            }
-//        }
     }
 
     private fun checkShowNative(nativeAdmob: NativeAdmob) {
-        if(canShowNative && nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
-            canShowNative = false
+        if(nativeAdmob.available() && spManager.getBoolean(NameRemoteAdmob.NATIVE_LANGUAGE, true)){
             viewBinding.flAdplaceholder.visibility = View.VISIBLE
             nativeAdmob.showNative(viewBinding.flAdplaceholder, null)
         }
