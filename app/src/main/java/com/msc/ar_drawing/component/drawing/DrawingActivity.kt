@@ -185,12 +185,12 @@ class DrawingActivity : BaseActivity<ActivityMain1Binding>() {
     }
 
     private fun showBanner() {
-//        if(SpManager.getInstance(this@DrawingActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
-//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-//            bannerAdmob.showBanner(this@DrawingActivity, BuildConfig.banner_all, viewBinding.banner)
-//        }else{
-//            viewBinding.banner.visibility = View.GONE
-//        }
+        if(SpManager.getInstance(this@DrawingActivity).getBoolean(NameRemoteAdmob.BANNER_COLLAPSE_DRAW_TEXT, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+            bannerAdmob.showBanner(this@DrawingActivity, BuildConfig.banner_collapse_draw_text, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun lockSticker() {

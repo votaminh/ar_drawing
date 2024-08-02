@@ -17,5 +17,6 @@ class NameRemoteAdmob {
         const val BANNER_COLLAPSE_HOME = "banner_collap_home"
         const val BANNER_COLLAPSE_PICK_IMAGE = "banner_collapse_pick_image"
         const val BANNER_COLLAPSE_PREVIEW = "banner_collapse_preview"
+        const val BANNER_COLLAPSE_DRAW_TEXT = "banner_collapse_draw_text"
     }
 }

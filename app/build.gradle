@@ -55,6 +55,7 @@ android {
             buildConfigField "String", "banner_collap_home", "\"ca-app-pub-7121787699260095/8455668262\""
             buildConfigField "String", "banner_collapse_pick_image", "\"ca-app-pub-7121787699260095/8455668262\""
             buildConfigField "String", "banner_collapse_preview", "\"ca-app-pub-7121787699260095/8455668262\""
+            buildConfigField "String", "banner_collapse_draw_text", "\"ca-app-pub-7121787699260095/8455668262\""
         }
 
         debug {
@@ -74,6 +75,7 @@ android {
             buildConfigField "String", "banner_collap_home", "\"ca-app-pub-3940256099942544/2014213617\""
             buildConfigField "String", "banner_collapse_pick_image", "\"ca-app-pub-3940256099942544/2014213617\""
             buildConfigField "String", "banner_collapse_preview", "\"ca-app-pub-3940256099942544/2014213617\""
+            buildConfigField "String", "banner_collapse_draw_text", "\"ca-app-pub-3940256099942544/2014213617\""
         }
     }
     compileOptions {
