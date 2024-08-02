@@ -111,12 +111,12 @@ class AddTextActivity : BaseActivity<ActivityAddTextBinding>() {
 
 
     private fun showBanner() {
-        if(SpManager.getInstance(this@AddTextActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
-            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-            bannerAdmob.showBanner(this@AddTextActivity, BuildConfig.banner_all, viewBinding.banner)
-        }else{
-            viewBinding.banner.visibility = View.GONE
-        }
+//        if(SpManager.getInstance(this@AddTextActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
+//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
+//            bannerAdmob.showBanner(this@AddTextActivity, BuildConfig.banner_all, viewBinding.banner)
+//        }else{
+//            viewBinding.banner.visibility = View.GONE
+//        }
     }
 
     override fun initObserver() {

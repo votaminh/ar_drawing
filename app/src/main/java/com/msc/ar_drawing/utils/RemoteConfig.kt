@@ -77,6 +77,7 @@ class RemoteConfig {
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
 //            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_SPLASH)
             putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_ALL)
+            putBooleanToSP(remoteConfig, NameRemoteAdmob.BANNER_COLLAPSE_HOME)
 
             configNativeAdmobUI(remoteConfig)
         }

@@ -112,9 +112,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     private fun showBanner() {
-        if(spManager.getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
-            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_all, viewBinding.banner)
+        if(spManager.getBoolean(NameRemoteAdmob.BANNER_COLLAPSE_HOME, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+            bannerAdmob.showBanner(this@HomeActivity, BuildConfig.banner_collap_home, viewBinding.banner)
         }else{
             viewBinding.banner.visibility = View.GONE
         }
