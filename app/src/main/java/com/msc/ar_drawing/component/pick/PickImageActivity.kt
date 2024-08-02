@@ -81,12 +81,12 @@ class PickImageActivity : BaseActivity<ActivityPickImageBinding>() {
     }
 
     private fun showBanner() {
-//        if(SpManager.getInstance(this@PickImageActivity).getBoolean(NameRemoteAdmob.BANNER_ALL, true)){
-//            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.NONE)
-//            bannerAdmob.showBanner(this@PickImageActivity, BuildConfig.banner_all, viewBinding.banner)
-//        }else{
-//            viewBinding.banner.visibility = View.GONE
-//        }
+        if(SpManager.getInstance(this@PickImageActivity).getBoolean(NameRemoteAdmob.BANNER_COLLAPSE_PICK_IMAGE, true)){
+            val bannerAdmob = BannerAdmob(this, CollapsiblePositionType.BOTTOM)
+            bannerAdmob.showBanner(this@PickImageActivity, BuildConfig.banner_collapse_pick_image, viewBinding.banner)
+        }else{
+            viewBinding.banner.visibility = View.GONE
+        }
     }
 
     private fun buildReImage() {
