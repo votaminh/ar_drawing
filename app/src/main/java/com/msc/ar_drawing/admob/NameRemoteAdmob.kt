@@ -9,6 +9,7 @@ class NameRemoteAdmob {
         const val NATIVE_ONBOARD = "native_onboard"
         const val NATIVE_EXIT = "native_exit"
         const val NATIVE_PERMISSION = "native_permission"
+        const val NATIVE_FULL_SCREEN = "native_full_screen"
 
         const val APP_RESUME = "app_resume"
 
