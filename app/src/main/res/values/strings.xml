@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">AR Drawing</string>
 
+    <string name="facebook_app_id">"4007749226166659 "</string>
+    <string name="facebook_client_token">cf72b9ffc6f8cfa666d89c7eddbe9d05</string>
+
     <string name="english">English</string>
     <string name="vietnamese">Vietnamese</string>
     <string name="hindi">Hindi</string>

@@ -12,12 +12,16 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.msc.ar_drawing.R;
+
+import java.math.BigDecimal;
+import java.util.Currency;
 
 public class InterAdmob extends BaseAdmob {
     private static final String TAG = "interAdmob";
@@ -62,6 +66,11 @@ public class InterAdmob extends BaseAdmob {
                     public void onAdLoaded(@NonNull InterstitialAd i) {
                         Log.i(TAG, "onAdLoaded: ");
                         interstitialAd = i;
+
+                        interstitialAd.setOnPaidEventListener(adValue -> {
+                            AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(adValue.getValueMicros()/1000000.0f*25000f), Currency.getInstance("VND"));
+                        });
+
                         if(onAdmobLoadListener != null){
                             onAdmobLoadListener.onLoad();
                             onAdmobLoadListener = null;

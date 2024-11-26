@@ -1,7 +1,6 @@
 package com.msc.ar_drawing.admob;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -10,14 +9,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.lifecycle.MutableLiveData;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MediaAspectRatio;
 import com.google.android.gms.ads.VideoController;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.MediaView;
@@ -26,14 +24,16 @@ import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.msc.ar_drawing.BuildConfig;
 import com.msc.ar_drawing.R;
-import com.msc.ar_drawing.utils.SpManager;
+
+import java.math.BigDecimal;
+import java.util.Currency;
 
 public class NativeAdmob extends BaseAdmob {
     private static final String TAG = "nativeAdmob";
     private static int indexLoadNative = 0;
 
     private final String id;
-    private int indexDebug = 0;
+    private final int indexDebug;
     private final MutableLiveData<NativeAd> nativeAdLive = new MutableLiveData<>();
 
     private boolean canReload = false;
@@ -41,10 +41,12 @@ public class NativeAdmob extends BaseAdmob {
     public NativeAdmob(Context context, String id) {
         super(context);
         this.id = id;
+        indexDebug = (indexLoadNative++);
+        Log.i(TAG, "NativeAdmob: " + id + " indexDebug: " + indexDebug);
     }
 
     public boolean available() {
-        if (nativeAdLive.getValue() != null && !canReload) {
+        if (nativeAdLive.getValue() != null) {
             return true;
         } else {
             return false;
@@ -62,20 +64,6 @@ public class NativeAdmob extends BaseAdmob {
             enableReload(true);
 
             NativeAdView adView = parent.findViewById(R.id.native_ad_view);
-
-            String bgCTA = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.BG_CTA, "#fff");
-            String textCTA = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.TEXT_CTA, "#fff");
-            String bgAD = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.BG_AD, "#fff");
-            String textAd = SpManager.Companion.getInstance(parent.getContext()).getString(NameRemoteUINative.TEXT_AD, "#fff");
-
-            TextView tvCTA = parent.findViewById(R.id.ad_call_to_action);
-            CardView cta = (CardView) tvCTA.getParent();
-            TextView tvAd = parent.findViewById(R.id.tvAd);
-
-            cta.setCardBackgroundColor(Color.parseColor(bgCTA));
-            tvCTA.setTextColor(Color.parseColor(textCTA));
-            tvAd.setBackgroundColor(Color.parseColor(bgAD));
-            tvAd.setTextColor(Color.parseColor(textAd));
 
             parent.hideShimmer();
             parent.stopShimmer();
@@ -101,18 +89,7 @@ public class NativeAdmob extends BaseAdmob {
         load(onAdmobLoadListener, 30000);
     }
 
-    public void load(OnAdmobLoadListener onAdmobLoadListener, boolean nativeFull) {
-        load(onAdmobLoadListener, 30000, nativeFull);
-    }
-
     public void load(OnAdmobLoadListener onNativeLoadListener1, long timeoutMillis) {
-        load(onNativeLoadListener1, timeoutMillis, false);
-    }
-
-    public void load(OnAdmobLoadListener onNativeLoadListener1, long timeoutMillis, boolean nativeFull) {
-        indexDebug = (indexLoadNative++);
-        Log.i(TAG, "NativeAdmob: " + id + " indexDebug: " + indexDebug);
-
         enableReload(false);
 
         Log.i(TAG, "load: ");
@@ -139,6 +116,9 @@ public class NativeAdmob extends BaseAdmob {
                         nativeAdLive.getValue().destroy();
                     }
 
+                    a.setOnPaidEventListener(adValue -> {
+                        AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(adValue.getValueMicros()/1000000.0f*25000f), Currency.getInstance("VND"));
+                    });
                     setNativeAd(a);
 
                     if (onAdmobLoadListener != null) {
@@ -147,16 +127,11 @@ public class NativeAdmob extends BaseAdmob {
                     }
                 });
 
-        if(nativeFull){
-            VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(false).setCustomControlsRequested(true).build();
-            NativeAdOptions adOptions = new NativeAdOptions.Builder().setMediaAspectRatio(MediaAspectRatio.ANY).setVideoOptions(videoOptions).build();
-            builder.withNativeAdOptions(adOptions);
-        }else {
-            VideoOptions videoOptions = new VideoOptions.Builder().setStartMuted(true).build();
-            NativeAdOptions adOptions = new NativeAdOptions.Builder().setVideoOptions(videoOptions).build();
-            builder.withNativeAdOptions(adOptions);
-        }
-
+        VideoOptions videoOptions =
+                new VideoOptions.Builder().setStartMuted(true).build();
+        NativeAdOptions adOptions =
+                new NativeAdOptions.Builder().setVideoOptions(videoOptions).build();
+        builder.withNativeAdOptions(adOptions);
         AdLoader adLoader = builder.withAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

@@ -6,11 +6,15 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.appopen.AppOpenAd;
+import com.msc.ar_drawing.admob.BaseAdmob;
 
+import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.Date;
 
 public class OpenAdmob extends BaseAdmob {
@@ -32,7 +36,7 @@ public class OpenAdmob extends BaseAdmob {
         loadAd(activity, null);
     }
 
-    public void loadAd(Activity context, OnAdmobLoadListener onAdmobLoadListener){
+    public void loadAd(Activity context, BaseAdmob.OnAdmobLoadListener onAdmobLoadListener){
         Log.i(TAG, "loadAd: ");
 
         if (isLoadingAd || isAdAvailable()) {
@@ -51,6 +55,11 @@ public class OpenAdmob extends BaseAdmob {
                         appOpenAd = ad;
                         isLoadingAd = false;
                         loadTime = (new Date()).getTime();
+
+                        ad.setOnPaidEventListener(adValue -> {
+                            AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(adValue.getValueMicros()/1000000.0f*25000f), Currency.getInstance("VND"));
+                        });
+
                         if(onAdmobLoadListener != null) onAdmobLoadListener.onLoad();
                     }
 
@@ -73,7 +82,7 @@ public class OpenAdmob extends BaseAdmob {
         return (dateDifference < (numMilliSecondsPerHour * numHours));
     }
 
-    public void showAdIfAvailable(@NonNull final Activity activity) {
+    public void showAdIfAvailable(@NonNull final Activity activity, BaseAdmob.OnAdmobShowListener onAdmobShowListener){
         Log.i(TAG, "showAdIfAvailable: " + activity.getClass().getSimpleName());
         if (isShowingOpenAd || !canShowOpenApp) {
             Log.i(TAG, "isShowingOpenAd || !CAN_SHOW_OPEN_APP: ");
@@ -93,30 +102,28 @@ public class OpenAdmob extends BaseAdmob {
                         latestTimeShowOpenAd = System.currentTimeMillis();
                         appOpenAd = null;
                         isShowingOpenAd = false;
-                        loadAd(activity);
+                        if(onAdmobShowListener != null) onAdmobShowListener.onShow();
                     }
 
-                    /** Called when fullscreen content failed to show. */
                     @Override
                     public void onAdFailedToShowFullScreenContent(AdError adError) {
                         Log.i(TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
                         appOpenAd = null;
                         isShowingOpenAd = false;
-                        loadAd(activity);
-
-                        Log.i("dsfdf", "onAdFailedToShowFullScreenContent: ");
+                        if(onAdmobShowListener != null) onAdmobShowListener.onError(adError.getMessage());
                     }
 
-                    /** Called when fullscreen content is shown. */
                     @Override
                     public void onAdShowedFullScreenContent() {
                         Log.i(TAG, "onAdShowedFullScreenContent: ");
-
                         isShowingOpenAd = true;
-                      
                     }
                 });
 
         appOpenAd.show(activity);
+    }
+
+    public void showAdIfAvailable(@NonNull final Activity activity) {
+        showAdIfAvailable(activity, null);
     }
 }
